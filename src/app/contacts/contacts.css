@@ -1,0 +1,388 @@
+/* /src/styles/contacts.css */
+
+.contacts-page {
+  background: var(--bg-primary);
+}
+
+/* Hero секция */
+.contacts-hero {
+  position: relative;
+  height: 300px;
+  background: url('/images/contacts-hero.jpg') center/cover;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.contacts-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.contacts-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contacts-hero h1 {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.contacts-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Быстрые контакты */
+.quick-contacts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.quick-contact-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-gold-light);
+  border-radius: 8px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.quick-contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-gold);
+}
+
+.quick-contact-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.quick-contact-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--color-black);
+  font-family: var(--font-primary);
+}
+
+.quick-contact-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+a.quick-contact-value:hover {
+  color: var(--color-gold-dark);
+  text-decoration: underline;
+}
+
+.quick-contact-note {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+}
+
+/* Сетка контактов */
+.contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+/* Форма */
+.contacts-form-section {
+  background: var(--color-white);
+  border: 1px solid var(--color-gold-light);
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.contacts-form-section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--color-black);
+}
+
+.section-subtitle {
+  color: var(--color-gray);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--color-black);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid var(--color-gold-light);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(198, 164, 92, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--color-gray-light);
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group input {
+  width: auto;
+  margin: 0;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+  color: var(--color-gray);
+  font-size: 0.9rem;
+}
+
+/* Информационная карточка */
+.contacts-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.info-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-gold-light);
+  border-radius: 8px;
+  padding: 40px;
+}
+
+.info-card h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--color-black);
+}
+
+.info-block {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--color-gold-light);
+}
+
+.info-block:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.info-block h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: var(--color-gold);
+  font-family: var(--font-primary);
+}
+
+.info-block p {
+  color: var(--color-gray-dark);
+  margin-bottom: 5px;
+  line-height: 1.6;
+}
+
+.info-block a {
+  color: var(--color-gray-dark);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-block a:hover {
+  color: var(--color-gold);
+}
+
+.info-note {
+  font-size: 0.9rem;
+  color: var(--color-gray) !important;
+  margin-top: 5px;
+}
+
+/* Часы работы */
+.work-hours {
+  list-style: none;
+  padding: 0;
+}
+
+.work-hours li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: var(--color-gray-dark);
+}
+
+.work-hours .hours {
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+/* Социальные сети в контактах */
+.info-social {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-social .social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-gray-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border: 1px solid var(--color-gold-light);
+  border-radius: 4px;
+}
+
+.info-social .social-link:hover {
+  background: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+  transform: translateX(5px);
+}
+
+.info-social .social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Кнопки в контактах */
+.info-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.info-buttons .btn {
+  flex: 1;
+}
+
+/* Карта */
+.map-container {
+  border: 1px solid var(--color-gold-light);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 450px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .contacts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .quick-contacts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contacts-hero h1 {
+    font-size: 3rem;
+  }
+  
+  .contacts-hero {
+    height: 200px;
+  }
+  
+  .quick-contacts {
+    grid-template-columns: 1fr;
+  }
+  
+  .contacts-form-section,
+  .info-card {
+    padding: 30px 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-buttons {
+    flex-direction: column;
+  }
+  
+  .work-hours li {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contacts-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .contacts-hero p {
+    font-size: 1rem;
+  }
+  
+  .quick-contact-card {
+    padding: 30px 20px;
+  }
+  
+  .quick-contact-icon {
+    font-size: 2.5rem;
+  }
+  
+  .quick-contact-value {
+    font-size: 1rem;
+  }
+}

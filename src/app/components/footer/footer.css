@@ -1,0 +1,486 @@
+/* /components/footer.css */
+
+.footer {
+    position: relative;
+    background: var(--color-black);
+    color: var(--color-white);
+    margin-top: 80px;
+}
+
+/* Золотая декоративная полоса */
+.footer-gold-bar {
+    background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold-light), var(--color-gold-dark));
+    padding: 12px 0;
+    overflow: hidden;
+}
+
+.footer-gold-bar-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    animation: scrollGold 20s linear infinite;
+}
+
+.footer-gold-text {
+    color: var(--color-black);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@keyframes scrollGold {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Основная часть футера */
+.footer-main {
+    padding: 60px 0 40px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* Колонка с логотипом */
+.footer-about {
+    max-width: 350px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    width: auto;
+    height: 50px;
+}
+
+.footer-logo-text {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.footer-description {
+    color: var(--color-gray-light);
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* Социальные сети */
+.footer-social h4 {
+    color: var(--color-gold);
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+    color: var(--color-gold);
+    transition: all 0.3s ease;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-link:hover {
+    background: var(--color-gold);
+    color: var(--color-black);
+    transform: translateY(-3px);
+}
+
+/* Заголовки колонок */
+.footer-col h4 {
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-family: var(--font-primary);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--color-gold);
+}
+
+/* Ссылки */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--color-gray-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: var(--color-gold);
+    transform: translateX(5px);
+}
+
+.footer-link-all {
+    color: var(--color-gold) !important;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.footer-link-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.footer-link-all:hover .footer-link-icon {
+    transform: translateX(3px);
+}
+
+/* Контакты */
+.footer-contact {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: var(--color-gray-light);
+    font-size: 0.95rem;
+}
+
+.footer-contact-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.footer-contact li strong {
+    display: block;
+    color: var(--color-white);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.footer-contact li a {
+    color: var(--color-gray-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact li a:hover {
+    color: var(--color-gold);
+}
+
+.footer-contact li p {
+    margin: 0;
+}
+
+/* Подписка на новости */
+.footer-newsletter {
+    padding: 40px 0;
+    border-top: 1px solid rgba(198, 164, 92, 0.2);
+    border-bottom: 1px solid rgba(198, 164, 92, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.newsletter-content h4 {
+    color: var(--color-gold);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-family: var(--font-primary);
+}
+
+.newsletter-content p {
+    color: var(--color-gray-light);
+    font-size: 0.95rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+    min-width: 400px;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(198, 164, 92, 0.3);
+    border-radius: 4px;
+    color: var(--color-white);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-input::placeholder {
+    color: var(--color-gray);
+}
+
+.newsletter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: var(--color-gold);
+    color: var(--color-black);
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+    background: var(--color-gold-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
+}
+
+.newsletter-btn-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.newsletter-btn:hover .newsletter-btn-icon {
+    transform: translateX(3px) rotate(-45deg);
+}
+
+/* Нижняя часть */
+.footer-bottom {
+    padding: 25px 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--color-gray);
+    font-size: 0.9rem;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-bottom-links a {
+    color: var(--color-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--color-gold);
+}
+
+/* Кнопка "Наверх" */
+.footer-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--color-gold);
+    color: var(--color-black);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: var(--shadow-gold);
+}
+
+.footer-back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.footer-back-to-top:hover {
+    background: var(--color-gold-dark);
+    transform: translateY(-5px);
+}
+
+.footer-back-to-top svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-about {
+        grid-column: span 2;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .newsletter-form {
+        min-width: 100%;
+    }
+
+    .footer-newsletter {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-about {
+        grid-column: auto;
+    }
+
+    .footer-gold-bar-content {
+        animation: none;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .footer-gold-text {
+        font-size: 0.8rem;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer-back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-back-to-top svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-main {
+        padding: 40px 0 30px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-contact li {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .footer-contact-icon {
+        margin: 0 auto;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Анимация появления кнопки "Наверх" */
+@media (min-width: 769px) {
+    .footer-back-to-top {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .footer-back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}
