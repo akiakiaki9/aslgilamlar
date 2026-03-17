@@ -57,6 +57,7 @@ export default function RootLayout({ children }) {
     <html lang="ru">
       <head>
         <meta charSet="utf-8" />
+        <link rel="icon" href="/images/logo.png" type="image/png" />
         <meta name="geo.region" content="UZ-BU" />
         <meta name="geo.placename" content="Bukhara, Uzbekistan" />
         <meta name="geo.position" content="39.76808;64.45594" />

@@ -68,6 +68,7 @@ const Navbar = () => {
                     <Link href="/" className="navbar-link">Главная</Link>
                     <Link href="/catalog" className="navbar-link">Каталог</Link>
                     <Link href="/contacts" className="navbar-link">Контакты</Link>
+                    <Link href="/favorites" className="navbar-link">Избранные</Link>
                 </div>
 
                 {/* Контакты и кнопки для десктопа */}
@@ -128,6 +129,9 @@ const Navbar = () => {
                         </Link>
                         <Link href="/contacts" className="navbar-mobile-link" onClick={closeMenu}>
                             Контакты
+                        </Link>
+                        <Link href="/favorites" className="navbar-mobile-link" onClick={closeMenu}>
+                            Избранные
                         </Link>
 
                         <div className="navbar-mobile-divider"></div>

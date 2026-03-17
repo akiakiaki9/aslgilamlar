@@ -12,7 +12,6 @@ export default function CarpetDetailPage() {
     const id = parseInt(params.id);
 
     const [selectedImage, setSelectedImage] = useState(0);
-    const [quantity, setQuantity] = useState(1);
     const [activeTab, setActiveTab] = useState('description');
 
     // Функция для поиска ковра по ID
@@ -62,34 +61,28 @@ export default function CarpetDetailPage() {
 
     const similarCarpets = getSimilarCarpets();
 
-    const handleQuantityChange = (delta) => {
-        setQuantity(prev => Math.max(1, prev + delta));
-    };
-
-    const handleAddToCart = () => {
-        // Здесь будет логика добавления в корзину
-        alert(`Добавлено в корзину: ${carpet.name} (${quantity} шт.)`);
-    };
-
-    const handleBuyNow = () => {
-        // Здесь будет логика быстрого заказа
-        alert(`Быстрый заказ: ${carpet.name}`);
+    const handlePhoneOrder = () => {
+        // Здесь будет логика заказа по телефону
+        window.location.href = 'tel:+998917183333';
     };
 
     return (
         <div className="carpet-detail-page">
-            {/* Хлебные крошки */}
-            <div className="breadcrumbs">
+            {/* Верхняя панель с названием страницы и хлебными крошками */}
+            <div className="page-header">
                 <div className="container">
-                    <Link href="/">Главная</Link>
-                    <span className="breadcrumbs-separator">/</span>
-                    <Link href="/catalog">Каталог</Link>
-                    <span className="breadcrumbs-separator">/</span>
-                    <Link href={`/catalog?category=${carpet.categoryId}`}>
-                        {carpet.categoryName}
-                    </Link>
-                    <span className="breadcrumbs-separator">/</span>
-                    <span className="breadcrumbs-current">{carpet.name}</span>
+                    <h1 className="page-title">Детальная информация о ковре</h1>
+                    <div className="breadcrumbs">
+                        <Link href="/">Главная</Link>
+                        <span className="breadcrumbs-separator">/</span>
+                        <Link href="/catalog">Каталог</Link>
+                        <span className="breadcrumbs-separator">/</span>
+                        <Link href={`/catalog?category=${carpet.categoryId}`}>
+                            {carpet.categoryName}
+                        </Link>
+                        <span className="breadcrumbs-separator">/</span>
+                        <span className="breadcrumbs-current">{carpet.name}</span>
+                    </div>
                 </div>
             </div>
 
@@ -192,43 +185,18 @@ export default function CarpetDetailPage() {
                             )}
                         </div>
 
-                        {/* Количество и кнопки */}
+                        {/* Кнопка заказа по телефону */}
                         {carpet.inStock && (
-                            <>
-                                <div className="info-quantity">
-                                    <span className="quantity-label">Количество:</span>
-                                    <div className="quantity-controls">
-                                        <button
-                                            className="quantity-btn"
-                                            onClick={() => handleQuantityChange(-1)}
-                                            disabled={quantity <= 1}
-                                        >
-                                            −
-                                        </button>
-                                        <span className="quantity-value">{quantity}</span>
-                                        <button
-                                            className="quantity-btn"
-                                            onClick={() => handleQuantityChange(1)}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="info-buttons">
-                                    <button className="btn btn-gold btn-large" onClick={handleAddToCart}>
-                                        <svg className="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                        Добавить в корзину
-                                    </button>
-                                    <button className="btn btn-outline-gold btn-large" onClick={handleBuyNow}>
-                                        Быстрый заказ
-                                    </button>
-                                </div>
-                            </>
+                            <div className="info-order">
+                                <button className="btn btn-gold btn-large btn-order" onClick={handlePhoneOrder}>
+                                    <svg className="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 16.92V19C22.0011 19.7904 21.816 20.5705 21.4617 21.2702C21.1073 21.97 20.5961 22.566 19.9744 23.002C19.3526 23.4381 18.6413 23.6991 17.899 23.7598C17.1567 23.8205 16.4094 23.6789 15.72 23.35C13.6339 22.4532 11.6636 21.2925 9.86002 19.9C8.19198 18.6105 6.73696 17.0653 5.56002 15.33C4.19012 13.5029 3.05193 11.5072 2.17002 9.39C1.85681 8.6939 1.72419 7.93264 1.78354 7.17499C1.84288 6.41733 2.09236 5.68662 2.50655 5.05022C2.92074 4.41381 3.4852 3.89323 4.14876 3.53689C4.81231 3.18055 5.55248 3.00015 6.30002 3.01H8.17002C8.81627 3.00203 9.44554 3.2082 9.96002 3.59C10.3881 3.91807 10.7161 4.36308 10.91 4.87C11.1924 5.64757 11.5259 6.40439 11.91 7.14C12.1422 7.59724 12.2559 8.10594 12.24 8.62C12.233 9.11573 12.0953 9.60006 11.84 10.02C11.707 10.2413 11.574 10.4627 11.44 10.68C11.2643 10.9435 11.1465 11.2428 11.095 11.5571C11.0435 11.8714 11.0597 12.1929 11.1425 12.5003C11.2253 12.8077 11.3727 13.0936 11.5741 13.3383C11.7755 13.5831 12.026 13.7808 12.31 13.92C13.3361 14.5033 14.4495 14.925 15.61 15.17C15.9965 15.2389 16.3943 15.2086 16.7648 15.0827C17.1353 14.9569 17.4641 14.7403 17.72 14.45C18.0238 14.0883 18.3949 13.7885 18.81 13.56C19.5328 13.1684 20.3852 13.1185 21.15 13.42C21.6499 13.6102 22.0909 13.9304 22.425 14.34C22.8052 14.835 23.0272 15.4372 23.06 16.06C23.0731 16.3616 23.0353 16.664 22.9486 16.9512C22.8619 17.2383 22.7283 17.5052 22.555 17.74C22.3618 18.0257 22.1771 18.317 22 18.61V16.92Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                    Заказать по телефону
+                                    <span className="btn-phone">+998 (91) 718-33-33</span>
+                                </button>
+                                <p className="order-info">Звонок бесплатный. Работаем ежедневно с 9:00 до 21:00</p>
+                            </div>
                         )}
 
                         {/* Дополнительная информация */}

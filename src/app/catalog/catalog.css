@@ -324,3 +324,84 @@
         font-size: 1rem;
     }
 }
+
+/* Добавьте эти стили в ваш catalog.css */
+
+.catalog-card-wrapper {
+    position: relative;
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gold-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.catalog-card-wrapper:hover .favorite-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.favorite-btn:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    transform: scale(1.1);
+}
+
+.favorite-btn:hover svg {
+    color: var(--color-white);
+}
+
+.favorite-btn.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-white);
+}
+
+.favorite-btn.active:hover {
+    background: var(--color-gold-dark);
+}
+
+.favorite-btn svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-gold);
+    transition: all 0.3s ease;
+}
+
+.favorite-btn.active svg {
+    color: var(--color-white);
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .favorite-btn {
+        opacity: 1;
+        transform: translateY(0);
+        width: 35px;
+        height: 35px;
+    }
+    
+    .favorite-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Кнопка в no-results */
+.no-results .btn {
+    margin-top: 20px;
+}

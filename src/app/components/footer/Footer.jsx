@@ -10,12 +10,6 @@ const Footer = () => {
     // Основные категории для футера
     const mainCategories = categories.slice(0, 6);
 
-    const handleSubscribe = (e) => {
-        e.preventDefault();
-        // Здесь будет логика подписки
-        alert('Спасибо за подписку!');
-    };
-
     return (
         <footer className="footer">
             {/* Золотая декоративная полоса сверху */}
@@ -43,7 +37,7 @@ const Footer = () => {
                                     height={60}
                                     className="footer-logo-img"
                                 />
-                                <span className="footer-logo-text">Bukhara<span className="text-gold">Carpets</span></span>
+                                <span className="footer-logo-text">ASL<span className="text-gold">GILAMLAR</span></span>
                             </div>
 
                             <p className="footer-description">
@@ -89,7 +83,7 @@ const Footer = () => {
                             <ul className="footer-links">
                                 {mainCategories.map(category => (
                                     <li key={category.id}>
-                                        <Link href={`/catalog?category=${category.id}`}>
+                                        <Link href={`/catalog/category/${category.id}`}>
                                             {category.name}
                                         </Link>
                                     </li>
@@ -163,32 +157,10 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-
-                    {/* Подписка на новости */}
-                    <div className="footer-newsletter">
-                        <div className="newsletter-content">
-                            <h4>Подпишитесь на новости</h4>
-                            <p>Будьте в курсе новых поступлений и специальных предложений</p>
-                        </div>
-                        <form className="newsletter-form" onSubmit={handleSubscribe}>
-                            <input
-                                type="email"
-                                placeholder="Ваш email"
-                                required
-                                className="newsletter-input"
-                            />
-                            <button type="submit" className="newsletter-btn">
-                                Подписаться
-                                <svg className="newsletter-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
 
-            {/* Нижняя часть с копирайтом */}
+            {/* Нижняя часть с копирайтом и разрабом */}
             <div className="footer-bottom">
                 <div className="container">
                     <div className="footer-bottom-content">
@@ -198,6 +170,10 @@ const Footer = () => {
                             <Link href="/terms">Условия использования</Link>
                             <Link href="/sitemap">Карта сайта</Link>
                         </div>
+                    </div>
+                    {/* Разработчик */}
+                    <div className="footer-developer">
+                        <p>Разработано в <a href="https://akbarsoft.uz" target="_blank" rel="noopener noreferrer" className="developer-link">Akbar Soft</a></p>
                     </div>
                 </div>
             </div>

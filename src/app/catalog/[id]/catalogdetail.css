@@ -1,23 +1,45 @@
-/* /src/styles/carpet-detail.css */
+/* catalogdetail.css */
 
-.carpet-detail-page {
-    padding: 40px 0 80px;
-    background: var(--bg-primary);
+/* Верхняя панель страницы */
+.page-header {
+    background: var(--color-black);
+    padding: 130px 0 30px 0;
+    margin-bottom: 40px;
+    border-bottom: 3px solid var(--color-gold);
 }
 
-/* Хлебные крошки */
+.page-title {
+    color: var(--color-white);
+    font-size: 2rem;
+    font-family: var(--font-primary);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--color-gold);
+}
+
+/* Хлебные крошки (обновленные) */
 .breadcrumbs {
-    margin-bottom: 40px;
-    padding: 15px 0;
-    background: var(--color-white);
-    border: 1px solid var(--color-gold-light);
-    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--color-gray-light);
 }
 
 .breadcrumbs a {
-    color: var(--color-gray);
+    color: var(--color-gray-light);
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .breadcrumbs a:hover {
@@ -32,6 +54,12 @@
 .breadcrumbs-current {
     color: var(--color-gold);
     font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.carpet-detail-page {
+    padding: 0 0 80px;
+    background: var(--bg-primary);
 }
 
 /* Основная часть */
@@ -245,71 +273,44 @@
     color: var(--color-black);
 }
 
-/* Количество */
-.info-quantity {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+/* Кнопка заказа */
+.info-order {
     margin-bottom: 25px;
 }
 
-.quantity-label {
-    font-weight: 500;
-    color: var(--color-gray-dark);
-}
-
-.quantity-controls {
+.btn-order {
+    width: 100%;
     display: flex;
     align-items: center;
-    border: 1px solid var(--color-gold-light);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.quantity-btn {
-    width: 40px;
-    height: 40px;
-    background: var(--color-white);
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--color-black);
-}
-
-.quantity-btn:hover:not(:disabled) {
-    background: var(--color-gold);
-    color: var(--color-white);
-}
-
-.quantity-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.quantity-value {
-    width: 50px;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* Кнопки */
-.info-buttons {
-    display: flex;
+    justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    border: none;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-.btn-large {
-    flex: 1;
-    padding: 15px 30px;
-    font-size: 1rem;
+.btn-order:hover {
+    background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold);
 }
 
-.btn-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+.btn-phone {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 30px;
+    margin-left: 10px;
+}
+
+.order-info {
+    text-align: center;
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 /* Дополнительная информация */
@@ -479,8 +480,14 @@
 }
 
 .similar-carpets h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--color-gold);
 }
 
 .similar-grid {
@@ -585,6 +592,14 @@
 }
 
 @media (max-width: 768px) {
+    .page-header {
+        padding: 20px 0;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
     .tabs-header {
         flex-wrap: wrap;
     }
@@ -603,16 +618,21 @@
         grid-template-columns: 1fr;
     }
 
-    .info-buttons {
-        flex-direction: column;
-    }
-
     .info-title {
         font-size: 1.5rem;
     }
 
     .price-current {
         font-size: 2rem;
+    }
+
+    .btn-order {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-phone {
+        margin-left: 0;
     }
 }
 
@@ -633,5 +653,9 @@
 
     .info-characters {
         grid-template-columns: 1fr;
+    }
+
+    .gallery-thumbnails {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

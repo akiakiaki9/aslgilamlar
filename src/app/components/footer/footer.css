@@ -224,88 +224,6 @@
     margin: 0;
 }
 
-/* Подписка на новости */
-.footer-newsletter {
-    padding: 40px 0;
-    border-top: 1px solid rgba(198, 164, 92, 0.2);
-    border-bottom: 1px solid rgba(198, 164, 92, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.newsletter-content h4 {
-    color: var(--color-gold);
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-family: var(--font-primary);
-}
-
-.newsletter-content p {
-    color: var(--color-gray-light);
-    font-size: 0.95rem;
-}
-
-.newsletter-form {
-    display: flex;
-    gap: 10px;
-    min-width: 400px;
-}
-
-.newsletter-input {
-    flex: 1;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(198, 164, 92, 0.3);
-    border-radius: 4px;
-    color: var(--color-white);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.newsletter-input:focus {
-    outline: none;
-    border-color: var(--color-gold);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.newsletter-input::placeholder {
-    color: var(--color-gray);
-}
-
-.newsletter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 30px;
-    background: var(--color-gold);
-    color: var(--color-black);
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.newsletter-btn:hover {
-    background: var(--color-gold-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
-}
-
-.newsletter-btn-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.3s ease;
-}
-
-.newsletter-btn:hover .newsletter-btn-icon {
-    transform: translateX(3px) rotate(-45deg);
-}
-
 /* Нижняя часть */
 .footer-bottom {
     padding: 25px 0;
@@ -320,6 +238,7 @@
     gap: 20px;
     color: var(--color-gray);
     font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
 .footer-bottom-links {
@@ -335,6 +254,27 @@
 
 .footer-bottom-links a:hover {
     color: var(--color-gold);
+}
+
+/* Разработчик */
+.footer-developer {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(198, 164, 92, 0.2);
+    color: var(--color-gray);
+    font-size: 0.9rem;
+}
+
+.developer-link {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.developer-link:hover {
+    color: var(--color-gold-light);
+    text-decoration: underline;
 }
 
 /* Кнопка "Наверх" */
@@ -384,17 +324,6 @@
     .footer-about {
         grid-column: span 2;
         max-width: 100%;
-    }
-}
-
-@media (max-width: 992px) {
-    .newsletter-form {
-        min-width: 100%;
-    }
-
-    .footer-newsletter {
-        flex-direction: column;
-        text-align: center;
     }
 }
 
@@ -459,15 +388,6 @@
 
     .footer-contact-icon {
         margin: 0 auto;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-    }
-
-    .newsletter-btn {
-        width: 100%;
-        justify-content: center;
     }
 }
 

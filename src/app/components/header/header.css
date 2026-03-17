@@ -1,5 +1,4 @@
-/* /components/heroHeader.css */
-
+/* heroHeader.css */
 .hero {
     position: relative;
     width: 100%;
@@ -8,6 +7,8 @@
     max-height: 1200px;
     overflow: hidden;
     color: var(--color-white);
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* Видео контейнер */
@@ -66,7 +67,7 @@
     height: 100%;
     background: radial-gradient(circle at 20% 50%,
             rgba(198, 164, 92, 0.2) 0%,
-            transparent 50%);
+            transparent 60%);
     z-index: 2;
     pointer-events: none;
 }
@@ -80,11 +81,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding-top: 80px;
 }
 
 .hero-content-wrapper {
-    max-width: 800px;
-    padding: 20px;
+    max-width: 900px;
+    padding: 0 20px;
     animation: fadeInUp 1s ease;
 }
 
@@ -100,7 +102,7 @@
 }
 
 .hero-decoration-line {
-    width: 60px;
+    width: 80px;
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
 }
@@ -127,6 +129,7 @@
     line-height: 1.1;
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
 }
 
 .hero-title-gold {
@@ -142,30 +145,31 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--color-gold);
     opacity: 0.5;
 }
 
 .hero-title-gold::before {
-    left: -40px;
+    left: -50px;
 }
 
 .hero-title-gold::after {
-    right: -40px;
+    right: -50px;
 }
 
 /* Подзаголовок */
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.8;
     margin-bottom: 40px;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards 0.9s;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
 }
 
 /* Кнопки */
@@ -189,7 +193,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 30px;
     transition: all 0.3s ease;
     cursor: pointer;
     border: 1px solid transparent;
@@ -218,7 +222,7 @@
 .hero-btn-primary:hover {
     background: var(--color-gold-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(198, 164, 92, 0.4);
+    box-shadow: var(--shadow-gold);
 }
 
 .hero-btn-primary:hover::before {
@@ -236,8 +240,9 @@
 .hero-btn-secondary:hover {
     background: var(--color-white);
     color: var(--color-black);
+    border-color: var(--color-white);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-light);
 }
 
 .hero-btn-icon {
@@ -254,7 +259,7 @@
 .hero-stats {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 80px;
     margin-bottom: 40px;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards 1.5s;
@@ -267,7 +272,7 @@
 }
 
 .hero-stat-number {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     font-family: var(--font-primary);
     color: var(--color-gold);
@@ -276,10 +281,11 @@
 }
 
 .hero-stat-label {
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     opacity: 0.8;
+    color: var(--color-white);
 }
 
 /* Индикатор скролла */
@@ -297,10 +303,11 @@
 }
 
 .hero-scroll-text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     opacity: 0.7;
+    color: var(--color-white);
 }
 
 .hero-scroll-line {
@@ -313,8 +320,8 @@
 /* Золотые углы */
 .hero-corner {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border: 2px solid var(--color-gold);
     opacity: 0.3;
     z-index: 4;
@@ -322,14 +329,14 @@
 }
 
 .hero-corner-tl {
-    top: 30px;
+    top: 100px;
     left: 30px;
     border-right: none;
     border-bottom: none;
 }
 
 .hero-corner-tr {
-    top: 30px;
+    top: 100px;
     right: 30px;
     border-left: none;
     border-bottom: none;
@@ -354,7 +361,6 @@
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -365,7 +371,6 @@
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -377,30 +382,36 @@
         transform: scaleY(0);
         transform-origin: top;
     }
-
     50% {
         transform: scaleY(1);
         transform-origin: top;
     }
-
     50.1% {
         transform-origin: bottom;
     }
-
     100% {
         transform: scaleY(0);
         transform-origin: bottom;
     }
 }
 
-/* Адаптивность */
+/* ========== АДАПТИВНОСТЬ ========== */
+
 @media (max-width: 1200px) {
     .hero-title-line {
         font-size: 4rem;
     }
-
+    
     .hero-title-gold {
         font-size: 4.5rem;
+    }
+    
+    .hero-stats {
+        gap: 60px;
+    }
+    
+    .hero-stat-number {
+        font-size: 2.5rem;
     }
 }
 
@@ -408,22 +419,44 @@
     .hero-title-line {
         font-size: 3.5rem;
     }
-
+    
     .hero-title-gold {
         font-size: 4rem;
     }
-
+    
     .hero-title-gold::before,
     .hero-title-gold::after {
         font-size: 1.2rem;
     }
-
+    
     .hero-title-gold::before {
-        left: -30px;
+        left: -35px;
     }
-
+    
     .hero-title-gold::after {
-        right: -30px;
+        right: -35px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+        padding: 0 30px;
+    }
+    
+    .hero-stats {
+        gap: 40px;
+    }
+    
+    .hero-corner {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .hero-corner-tl {
+        top: 80px;
+    }
+    
+    .hero-corner-tr {
+        top: 80px;
     }
 }
 
@@ -431,120 +464,263 @@
     .hero {
         min-height: 700px;
     }
-
+    
+    .hero-content {
+        padding-top: 70px;
+    }
+    
     .hero-title-line {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
-
+    
     .hero-title-gold {
-        font-size: 3rem;
+        font-size: 3.2rem;
     }
-
+    
     .hero-title-gold::before,
     .hero-title-gold::after {
         display: none;
     }
-
+    
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
         padding: 0 20px;
+        line-height: 1.6;
     }
-
+    
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
-        padding: 0 20px;
+        padding: 0 30px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
     }
-
+    
     .hero-btn {
         width: 100%;
         padding: 14px 30px;
     }
-
+    
     .hero-stats {
         gap: 30px;
         flex-wrap: wrap;
     }
-
+    
     .hero-stat-number {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
-
+    
     .hero-stat-label {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
-
+    
     .hero-decoration-line {
-        width: 30px;
+        width: 40px;
     }
-
+    
     .hero-decoration-text {
         font-size: 1rem;
+        letter-spacing: 3px;
     }
-
+    
     .hero-corner {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
-
+    
     .hero-corner-tl {
-        top: 15px;
+        top: 70px;
         left: 15px;
     }
-
+    
     .hero-corner-tr {
-        top: 15px;
+        top: 70px;
         right: 15px;
     }
-
+    
     .hero-corner-bl {
         bottom: 15px;
         left: 15px;
     }
-
+    
     .hero-corner-br {
         bottom: 15px;
         right: 15px;
     }
-}
-
-@media (max-width: 480px) {
-    .hero-title-line {
-        font-size: 2rem;
+    
+    .hero-scroll-indicator {
+        bottom: 20px;
     }
-
-    .hero-title-gold {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
-    }
-
-    .hero-stats {
-        gap: 20px;
-    }
-
-    .hero-stat-number {
-        font-size: 1.5rem;
-    }
-
-    .hero-stat-label {
-        font-size: 0.7rem;
-    }
-
+    
     .hero-scroll-text {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
-
+    
     .hero-scroll-line {
         height: 40px;
     }
 }
 
-/* Поддержка reduced motion */
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 576px) {
+    .hero {
+        min-height: 600px;
+    }
+    
+    .hero-content {
+        padding-top: 60px;
+    }
+    
+    .hero-title-line {
+        font-size: 2.2rem;
+    }
+    
+    .hero-title-gold {
+        font-size: 2.6rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+    
+    .hero-buttons {
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+    
+    .hero-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .hero-stats {
+        gap: 20px;
+    }
+    
+    .hero-stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .hero-stat-label {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-decoration-top {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-decoration-line {
+        width: 30px;
+    }
+    
+    .hero-decoration-text {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+    
+    .hero-corner {
+        width: 40px;
+        height: 40px;
+        border-width: 1px;
+    }
+    
+    .hero-corner-tl {
+        top: 60px;
+        left: 10px;
+    }
+    
+    .hero-corner-tr {
+        top: 60px;
+        right: 10px;
+    }
+    
+    .hero-corner-bl {
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    .hero-corner-br {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .hero-scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .hero-scroll-text {
+        font-size: 0.7rem;
+    }
+    
+    .hero-scroll-line {
+        height: 30px;
+    }
+}
 
+@media (max-width: 375px) {
+    .hero-title-line {
+        font-size: 1.8rem;
+    }
+    
+    .hero-title-gold {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .hero-stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .hero-stat-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* Альбомная ориентация */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 500px;
+    }
+    
+    .hero-content {
+        padding-top: 50px;
+    }
+    
+    .hero-title-line {
+        font-size: 2rem;
+    }
+    
+    .hero-title-gold {
+        font-size: 2.3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .hero-buttons {
+        margin-bottom: 30px;
+    }
+    
+    .hero-stats {
+        margin-bottom: 20px;
+    }
+    
+    .hero-scroll-indicator {
+        bottom: 10px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
     .hero-video,
     .hero-content-wrapper,
     .hero-decoration-top,
@@ -558,7 +734,7 @@
         animation: none;
         transition: none;
     }
-
+    
     .hero-scroll-line {
         animation: none;
     }
