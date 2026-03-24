@@ -3,6 +3,22 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import {
+    FaHeart,
+    FaTrash,
+    FaTimes,
+    FaCheck,
+    FaSort,
+    FaSortAmountUp,
+    FaSortAmountDown,
+    FaSortAlphaDown,
+    FaSortAlphaUp,
+    FaShoppingCart,
+    FaInfoCircle,
+    FaExclamationTriangle,
+    FaCheckCircle,
+    FaTimesCircle
+} from 'react-icons/fa';
 import { categories } from '../utils/data';
 import './favorites.css';
 
@@ -21,7 +37,6 @@ export default function FavoritesPage() {
                 if (savedFavorites) {
                     const favoriteIds = JSON.parse(savedFavorites);
 
-                    // Получаем все ковры
                     const allCarpets = categories.flatMap(category =>
                         category.carpets.map(carpet => ({
                             ...carpet,
@@ -30,7 +45,6 @@ export default function FavoritesPage() {
                         }))
                     );
 
-                    // Фильтруем избранные
                     const favoriteCarpets = allCarpets.filter(carpet =>
                         favoriteIds.includes(carpet.id)
                     );
@@ -48,7 +62,6 @@ export default function FavoritesPage() {
         loadFavorites();
     }, []);
 
-    // Показ уведомлений
     const showNotification = (message, type = 'success') => {
         setNotification({ show: true, message, type });
         setTimeout(() => {
@@ -56,7 +69,6 @@ export default function FavoritesPage() {
         }, 3000);
     };
 
-    // Удаление из избранного
     const removeFromFavorites = (carpetId, carpetName = '') => {
         try {
             const savedFavorites = localStorage.getItem('favorites');
@@ -76,7 +88,6 @@ export default function FavoritesPage() {
         }
     };
 
-    // Удаление выбранных
     const removeSelected = () => {
         if (selectedItems.length === 0) {
             showNotification('Выберите товары для удаления', 'warning');
@@ -103,7 +114,6 @@ export default function FavoritesPage() {
         }
     };
 
-    // Очистить всё
     const clearAll = () => {
         if (favorites.length === 0) return;
 
@@ -115,7 +125,6 @@ export default function FavoritesPage() {
         }
     };
 
-    // Выбор всех товаров
     const selectAll = () => {
         if (selectedItems.length === favorites.length) {
             setSelectedItems([]);
@@ -124,7 +133,6 @@ export default function FavoritesPage() {
         }
     };
 
-    // Выбор отдельного товара
     const toggleSelect = (carpetId) => {
         setSelectedItems(prev =>
             prev.includes(carpetId)
@@ -133,7 +141,6 @@ export default function FavoritesPage() {
         );
     };
 
-    // Сортировка
     const getSortedFavorites = () => {
         const sorted = [...favorites];
         switch (sortBy) {
@@ -150,11 +157,26 @@ export default function FavoritesPage() {
         }
     };
 
-    // Подсчет общей суммы
-    const totalSum = favorites.reduce((sum, carpet) => {
-        const currentPrice = carpet.price;
-        return sum + currentPrice;
-    }, 0);
+    const getSortIcon = () => {
+        switch (sortBy) {
+            case 'price-asc': return <FaSortAmountUp />;
+            case 'price-desc': return <FaSortAmountDown />;
+            case 'name-asc': return <FaSortAlphaDown />;
+            case 'name-desc': return <FaSortAlphaUp />;
+            default: return <FaSort />;
+        }
+    };
+
+    const getNotificationIcon = () => {
+        switch (notification.type) {
+            case 'success': return <FaCheckCircle />;
+            case 'error': return <FaTimesCircle />;
+            case 'warning': return <FaExclamationTriangle />;
+            default: return <FaInfoCircle />;
+        }
+    };
+
+    const totalSum = favorites.reduce((sum, carpet) => sum + carpet.price, 0);
 
     if (isLoading) {
         return (
@@ -172,15 +194,12 @@ export default function FavoritesPage() {
             {/* Уведомления */}
             {notification.show && (
                 <div className={`favorites-notification ${notification.type}`}>
-                    {notification.type === 'success' && '✓'}
-                    {notification.type === 'error' && '✕'}
-                    {notification.type === 'warning' && '⚠'}
-                    {notification.type === 'info' && 'ℹ'}
-                    <span>{notification.message}</span>
+                    <span className="notification-icon">{getNotificationIcon()}</span>
+                    <span className="notification-message">{notification.message}</span>
                 </div>
             )}
 
-            {/* Header в стиле детальной страницы */}
+            {/* Header */}
             <div className="page-header">
                 <div className="container">
                     <h1 className="page-title">
@@ -199,16 +218,16 @@ export default function FavoritesPage() {
 
             <div className="container">
                 {favorites.length === 0 ? (
-                    // Пустое избранное
                     <div className="favorites-empty">
                         <div className="empty-animation">
-                            <div className="empty-heart">❤️</div>
+                            <div className="empty-heart"><FaHeart /></div>
                             <div className="empty-carpet">🧶</div>
                         </div>
                         <h2>В избранном пока пусто</h2>
                         <p>Добавляйте понравившиеся ковры в избранное, нажимая на сердечко в каталоге</p>
                         <div className="empty-actions">
                             <Link href="/catalog" className="btn btn-gold">
+                                <FaShoppingCart />
                                 Перейти в каталог
                             </Link>
                             <Link href="/" className="btn btn-outline-gold">
@@ -254,17 +273,20 @@ export default function FavoritesPage() {
                             <div className="favorites-toolbar-right">
                                 <div className="favorites-sort">
                                     <label>Сортировка:</label>
-                                    <select
-                                        value={sortBy}
-                                        onChange={(e) => setSortBy(e.target.value)}
-                                        className="favorites-sort-select"
-                                    >
-                                        <option value="default">По умолчанию</option>
-                                        <option value="price-asc">Цена (по возрастанию)</option>
-                                        <option value="price-desc">Цена (по убыванию)</option>
-                                        <option value="name-asc">Название (А-Я)</option>
-                                        <option value="name-desc">Название (Я-А)</option>
-                                    </select>
+                                    <div className="sort-select-wrapper">
+                                        <select
+                                            value={sortBy}
+                                            onChange={(e) => setSortBy(e.target.value)}
+                                            className="favorites-sort-select"
+                                        >
+                                            <option value="default">По умолчанию</option>
+                                            <option value="price-asc">Цена (по возрастанию)</option>
+                                            <option value="price-desc">Цена (по убыванию)</option>
+                                            <option value="name-asc">Название (А-Я)</option>
+                                            <option value="name-desc">Название (Я-А)</option>
+                                        </select>
+                                        <span className="sort-icon">{getSortIcon()}</span>
+                                    </div>
                                 </div>
 
                                 <div className="favorites-actions">
@@ -274,19 +296,14 @@ export default function FavoritesPage() {
                                         disabled={selectedItems.length === 0}
                                         title="Удалить выбранные"
                                     >
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M3 6H5H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                        <FaTrash />
                                     </button>
                                     <button
                                         className="favorites-action-btn clear"
                                         onClick={clearAll}
                                         title="Очистить всё"
                                     >
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                        <FaTimes />
                                     </button>
                                 </div>
                             </div>
@@ -333,7 +350,6 @@ export default function FavoritesPage() {
                                             />
                                         </Link>
 
-                                        {/* Бейджи */}
                                         <div className="favorite-badges">
                                             {carpet.oldPrice && (
                                                 <span className="favorite-badge discount">
@@ -345,30 +361,20 @@ export default function FavoritesPage() {
                                             )}
                                         </div>
 
-                                        {/* Чекбокс для выбора */}
                                         <button
                                             className={`favorite-select-btn ${selectedItems.includes(carpet.id) ? 'selected' : ''}`}
                                             onClick={() => toggleSelect(carpet.id)}
                                             aria-label="Выбрать"
                                         >
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                {selectedItems.includes(carpet.id) ? (
-                                                    <path d="M5 12L10 17L19 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                                                ) : (
-                                                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-                                                )}
-                                            </svg>
+                                            {selectedItems.includes(carpet.id) ? <FaCheck /> : <div className="select-circle"></div>}
                                         </button>
 
-                                        {/* Кнопка удаления */}
                                         <button
                                             className="favorite-remove-btn"
                                             onClick={() => removeFromFavorites(carpet.id, carpet.name)}
                                             aria-label="Удалить из избранного"
                                         >
-                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
+                                            <FaTimes />
                                         </button>
                                     </div>
 
@@ -391,12 +397,10 @@ export default function FavoritesPage() {
 
                                         <div className="favorite-price-block">
                                             {carpet.oldPrice ? (
-                                                <>
-                                                    <div className="price-block">
-                                                        <span className="price-old">{carpet.oldPrice} $</span>
-                                                        <span className="price-current">{carpet.price} $</span>
-                                                    </div>
-                                                </>
+                                                <div className="price-block">
+                                                    <span className="price-old">{carpet.oldPrice} $</span>
+                                                    <span className="price-current">{carpet.price} $</span>
+                                                </div>
                                             ) : (
                                                 <div className="price-block single">
                                                     <span className="price-current">{carpet.price} $</span>
@@ -410,6 +414,7 @@ export default function FavoritesPage() {
                                                 className="favorite-action-btn primary"
                                             >
                                                 Подробнее
+                                                <FaShoppingCart />
                                             </Link>
                                         </div>
                                     </div>
@@ -423,7 +428,6 @@ export default function FavoritesPage() {
     );
 }
 
-// Вспомогательная функция для склонения слов
 function getWordForm(number, forms) {
     const cases = [2, 0, 1, 1, 1, 2];
     return forms[

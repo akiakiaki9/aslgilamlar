@@ -2,13 +2,54 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { categories } from '@/app/utils/data';
+import { useState, useEffect } from 'react';
 import './footer.css';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+    const [showBackToTop, setShowBackToTop] = useState(false);
+
+    // Данные из QuickContacts
+    const phoneNumber = "+998 (91) 718-33-33";
+    const telegramUsername = "asl_gilam_buxara";
+    const instagramUsername = "asl_gilam_buxara";
+    const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
+    const workHours = "Ежедневно: 9:00 - 19:00";
 
     // Основные категории для футера
     const mainCategories = categories.slice(0, 6);
+
+    // Отслеживаем скролл для кнопки "Наверх"
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowBackToTop(window.scrollY > 300);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleBackToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleLocationClick = () => {
+        const latitude = 39.771648;
+        const longitude = 64.420990;
+        const fullAddress = "Asl Gilam, " + address;
+
+        // Deeplink для Яндекс Go приложения
+        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
+        // Fallback на случай, если приложение не установлено
+        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
+
+        // Пробуем открыть приложение
+        window.location.href = deeplink;
+
+        // Таймаут для fallback (если приложение не открылось)
+        setTimeout(() => {
+            window.location.href = fallbackUrl;
+        }, 500);
+    };
 
     return (
         <footer className="footer">
@@ -20,6 +61,8 @@ const Footer = () => {
                         <span className="footer-gold-text">✦ Натуральные материалы</span>
                         <span className="footer-gold-text">✦ Доставка по всему миру</span>
                         <span className="footer-gold-text">✦ Гарантия качества</span>
+                        <span className="footer-gold-text">✦ Лучшие цены</span>
+                        <span className="footer-gold-text">✦ 100% хлопок</span>
                     </div>
                 </div>
             </div>
@@ -32,45 +75,34 @@ const Footer = () => {
                             <div className="footer-logo">
                                 <Image
                                     src="/images/logo.png"
-                                    alt="Bukhara Carpets"
+                                    alt="Asl Gilam"
                                     width={150}
                                     height={60}
                                     className="footer-logo-img"
                                 />
-                                <span className="footer-logo-text">ASL<span className="text-gold">GILAMLAR</span></span>
+                                <div className="footer-logo-text">
+                                    ASL<span className="text-gold">GILAM</span>
+                                </div>
                             </div>
-
                             <p className="footer-description">
-                                Бухарские ковры ручной работы — это не просто покрытие для пола,
-                                это настоящее произведение искусства, хранящее вековые традиции
-                                восточных мастеров.
+                                Asl Gilam — бухарские ковры ручной работы. Натуральные материалы,
+                                вековые традиции восточных мастеров и непревзойденное качество.
+                                Каждый ковер — это уникальное произведение искусства.
                             </p>
-
                             <div className="footer-social">
                                 <h4>Мы в соцсетях</h4>
                                 <div className="social-links">
-                                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+                                    <a href={`https://instagram.com/${instagramUsername}`} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M16 11.37C16.1234 12.2022 15.9812 13.0522 15.5937 13.799C15.2062 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4077 15.9059C10.5771 15.7721 9.80971 15.3801 9.21479 14.7852C8.61987 14.1903 8.22787 13.4229 8.0941 12.5923C7.96033 11.7616 8.09202 10.9099 8.47028 10.1584C8.84854 9.40685 9.45414 8.7938 10.2009 8.4063C10.9477 8.0188 11.7977 7.8766 12.63 8C13.4789 8.12588 14.2648 8.52146 14.8716 9.1283C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M17.5 6.5H17.51" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </a>
-                                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </a>
-                                    <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Telegram">
+                                    <a href={`https://t.me/${telegramUsername}`} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Telegram">
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M21 5L2 12.5L9 15.5L19 8L13 17L20 20L21 5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M9 15.5V19.5L12.5 16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </a>
-                                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="YouTube">
-                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M22.54 6.42C22.4212 5.94541 22.1793 5.51057 21.8387 5.15941C21.498 4.80824 21.0708 4.55318 20.6 4.42C18.88 4 12 4 12 4C12 4 5.12 4 3.4 4.46C2.92925 4.59318 2.50198 4.84824 2.16135 5.19941C1.82072 5.55057 1.57879 5.98541 1.46 6.46C1.14521 8.20556 0.991235 9.97631 1 11.75C0.988765 13.537 1.14275 15.3212 1.46 17.08C1.59096 17.5398 1.83531 17.9581 2.16814 18.2945C2.50098 18.6309 2.91082 18.8738 3.36 19C5.1 19.46 12 19.46 12 19.46C12 19.46 18.88 19.46 20.6 19C21.0708 18.8668 21.498 18.6118 21.8387 18.2606C22.1793 17.9094 22.4212 17.4746 22.54 17C22.8524 15.2676 23.0063 13.5103 23 11.75C23.0112 9.96295 22.8572 8.1787 22.54 6.42Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M9.75 15.02L15.5 11.75L9.75 8.48001V15.02Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </a>
                                 </div>
@@ -99,20 +131,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        {/* Колонка 3: Информация */}
-                        <div className="footer-col">
-                            <h4>Информация</h4>
-                            <ul className="footer-links">
-                                <li><Link href="/about">О нас</Link></li>
-                                <li><Link href="/delivery">Доставка и оплата</Link></li>
-                                <li><Link href="/guarantee">Гарантия</Link></li>
-                                <li><Link href="/care">Уход за коврами</Link></li>
-                                <li><Link href="/blog">Блог</Link></li>
-                                <li><Link href="/faq">Вопросы и ответы</Link></li>
-                            </ul>
-                        </div>
-
-                        {/* Колонка 4: Контакты */}
+                        {/* Колонка 3: Контакты */}
                         <div className="footer-col">
                             <h4>Контакты</h4>
                             <ul className="footer-contact">
@@ -122,7 +141,10 @@ const Footer = () => {
                                     </svg>
                                     <div>
                                         <strong>Адрес:</strong>
-                                        <p>Улица Навои, 45, Бухара, Узбекистан</p>
+                                        <p>{address}</p>
+                                        <button onClick={handleLocationClick} className="footer-address-link">
+                                            Построить маршрут →
+                                        </button>
                                     </div>
                                 </li>
                                 <li>
@@ -131,17 +153,8 @@ const Footer = () => {
                                     </svg>
                                     <div>
                                         <strong>Телефон:</strong>
-                                        <a href="tel:+998911234567">+998 (91) 123-45-67</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <svg className="footer-contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    <div>
-                                        <strong>Email:</strong>
-                                        <a href="mailto:info@bukharacarpets.uz">info@bukharacarpets.uz</a>
+                                        <a href={`tel:${phoneNumber.replace(/\D/g, '')}`}>{phoneNumber}</a>
+                                        <span className="footer-contact-note">WhatsApp / Telegram</span>
                                     </div>
                                 </li>
                                 <li>
@@ -151,7 +164,7 @@ const Footer = () => {
                                     </svg>
                                     <div>
                                         <strong>Часы работы:</strong>
-                                        <p>Ежедневно: 9:00 - 20:00</p>
+                                        <p>{workHours}</p>
                                     </div>
                                 </li>
                             </ul>
@@ -160,18 +173,12 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Нижняя часть с копирайтом и разрабом */}
+            {/* Нижняя часть с копирайтом */}
             <div className="footer-bottom">
                 <div className="container">
                     <div className="footer-bottom-content">
-                        <p>&copy; {currentYear} Bukhara Carpets. Все права защищены.</p>
-                        <div className="footer-bottom-links">
-                            <Link href="/privacy">Политика конфиденциальности</Link>
-                            <Link href="/terms">Условия использования</Link>
-                            <Link href="/sitemap">Карта сайта</Link>
-                        </div>
+                        <p>&copy; {currentYear} ASL GILAM. Все права защищены.</p>
                     </div>
-                    {/* Разработчик */}
                     <div className="footer-developer">
                         <p>Разработано в <a href="https://akbarsoft.uz" target="_blank" rel="noopener noreferrer" className="developer-link">Akbar Soft</a></p>
                     </div>
@@ -180,8 +187,8 @@ const Footer = () => {
 
             {/* Кнопка "Наверх" */}
             <button
-                className="footer-back-to-top"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className={`footer-back-to-top ${showBackToTop ? 'visible' : ''}`}
+                onClick={handleBackToTop}
                 aria-label="Наверх"
             >
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

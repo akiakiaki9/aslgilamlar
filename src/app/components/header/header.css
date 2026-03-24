@@ -1,4 +1,5 @@
-/* heroHeader.css */
+/* header.css - обновленная версия */
+
 .hero {
     position: relative;
     width: 100%;
@@ -177,7 +178,7 @@
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards 1.2s;
 }
@@ -186,24 +187,25 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     padding: 16px 40px;
     font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 40px;
     transition: all 0.3s ease;
     cursor: pointer;
     border: 1px solid transparent;
 }
 
 .hero-btn-primary {
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(198, 164, 92, 0.3);
 }
 
 .hero-btn-primary::before {
@@ -214,15 +216,14 @@
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
 
 .hero-btn-primary:hover {
-    background: var(--color-gold-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(198, 164, 92, 0.4);
 }
 
 .hero-btn-primary:hover::before {
@@ -231,28 +232,63 @@
 }
 
 .hero-btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     color: var(--color-white);
-    border-color: var(--color-white);
-    backdrop-filter: blur(5px);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .hero-btn-secondary:hover {
     background: var(--color-white);
     color: var(--color-black);
     border-color: var(--color-white);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero-btn-icon {
-    width: 20px;
-    height: 20px;
+    font-size: 1rem;
     transition: transform 0.3s ease;
 }
 
 .hero-btn-primary:hover .hero-btn-icon {
     transform: translateX(5px);
+}
+
+/* Быстрые контакты */
+.hero-quick-contacts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 1.5s;
+}
+
+.hero-quick-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hero-quick-contact:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+}
+
+.quick-icon {
+    font-size: 1rem;
 }
 
 /* Статистика */
@@ -262,7 +298,7 @@
     gap: 80px;
     margin-bottom: 40px;
     opacity: 0;
-    animation: fadeIn 0.8s ease forwards 1.5s;
+    animation: fadeIn 0.8s ease forwards 1.8s;
 }
 
 .hero-stat-item {
@@ -299,7 +335,7 @@
     align-items: center;
     gap: 10px;
     opacity: 0;
-    animation: fadeIn 0.8s ease forwards 2s;
+    animation: fadeIn 0.8s ease forwards 2.1s;
 }
 
 .hero-scroll-text {
@@ -442,6 +478,11 @@
         padding: 0 30px;
     }
     
+    .hero-quick-contacts {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
     .hero-stats {
         gap: 40px;
     }
@@ -486,6 +527,7 @@
         font-size: 1.1rem;
         padding: 0 20px;
         line-height: 1.6;
+        margin-bottom: 30px;
     }
     
     .hero-buttons {
@@ -495,11 +537,21 @@
         max-width: 400px;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 30px;
     }
     
     .hero-btn {
         width: 100%;
         padding: 14px 30px;
+    }
+    
+    .hero-quick-contacts {
+        margin-bottom: 40px;
+    }
+    
+    .hero-quick-contact {
+        padding: 8px 18px;
+        font-size: 0.85rem;
     }
     
     .hero-stats {
@@ -564,7 +616,7 @@
 
 @media (max-width: 576px) {
     .hero {
-        min-height: 600px;
+        min-height: 650px;
     }
     
     .hero-content {
@@ -582,17 +634,31 @@
     .hero-subtitle {
         font-size: 1rem;
         padding: 0 15px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
     
     .hero-buttons {
         padding: 0 15px;
-        margin-bottom: 40px;
+        margin-bottom: 25px;
     }
     
     .hero-btn {
         padding: 12px 20px;
         font-size: 0.9rem;
+    }
+    
+    .hero-quick-contacts {
+        gap: 15px;
+        margin-bottom: 35px;
+    }
+    
+    .hero-quick-contact {
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .quick-icon {
+        font-size: 0.85rem;
     }
     
     .hero-stats {
@@ -681,6 +747,15 @@
     .hero-stat-label {
         font-size: 0.7rem;
     }
+    
+    .hero-quick-contact {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .quick-icon {
+        font-size: 0.8rem;
+    }
 }
 
 /* Альбомная ориентация */
@@ -707,7 +782,11 @@
     }
     
     .hero-buttons {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-quick-contacts {
+        margin-bottom: 25px;
     }
     
     .hero-stats {
@@ -727,6 +806,7 @@
     .hero-title,
     .hero-subtitle,
     .hero-buttons,
+    .hero-quick-contacts,
     .hero-stats,
     .hero-scroll-indicator,
     .hero-btn::before,

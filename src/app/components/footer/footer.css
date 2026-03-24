@@ -34,7 +34,6 @@
     0% {
         transform: translateX(0);
     }
-
     100% {
         transform: translateX(-50%);
     }
@@ -47,7 +46,7 @@
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
+    grid-template-columns: 2fr 1fr 1.5fr;
     gap: 40px;
     margin-bottom: 50px;
 }
@@ -224,6 +223,31 @@
     margin: 0;
 }
 
+/* Кнопка построить маршрут */
+.footer-address-link {
+    background: none;
+    border: none;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.footer-address-link:hover {
+    color: var(--color-gold-light);
+    transform: translateX(3px);
+}
+
+/* Примечание к телефону */
+.footer-contact-note {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-gray);
+    margin-top: 3px;
+}
+
 /* Нижняя часть */
 .footer-bottom {
     padding: 25px 0;
@@ -232,28 +256,11 @@
 
 .footer-bottom-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
     color: var(--color-gray);
     font-size: 0.9rem;
     margin-bottom: 15px;
-}
-
-.footer-bottom-links {
-    display: flex;
-    gap: 30px;
-}
-
-.footer-bottom-links a {
-    color: var(--color-gray);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom-links a:hover {
-    color: var(--color-gold);
 }
 
 /* Разработчик */
@@ -296,7 +303,7 @@
     z-index: 99;
     opacity: 0;
     visibility: hidden;
-    box-shadow: var(--shadow-gold);
+    box-shadow: 0 4px 12px rgba(198, 164, 92, 0.3);
 }
 
 .footer-back-to-top.visible {
@@ -314,80 +321,251 @@
     height: 24px;
 }
 
-/* Адаптивность */
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты и ноутбуки */
 @media (max-width: 1200px) {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
     }
-
+    
     .footer-about {
         grid-column: span 2;
         max-width: 100%;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .footer-social h4 {
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-col h4 {
+        text-align: center;
+    }
+    
+    .footer-links {
+        text-align: center;
+    }
+    
+    .footer-links a {
+        justify-content: center;
+    }
+    
+    .footer-contact li {
+        justify-content: center;
+    }
+    
+    .footer-contact li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-contact-icon {
+        margin: 0 auto;
     }
 }
 
+/* Мобильные устройства */
 @media (max-width: 768px) {
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 40px;
     }
-
+    
     .footer-about {
         grid-column: auto;
-    }
-
-    .footer-gold-bar-content {
-        animation: none;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .footer-gold-text {
-        font-size: 0.8rem;
-    }
-
-    .footer-bottom-content {
-        flex-direction: column;
         text-align: center;
     }
-
-    .footer-bottom-links {
+    
+    .footer-gold-bar-content {
+        animation: none;
         flex-wrap: wrap;
         justify-content: center;
         gap: 15px;
     }
-
+    
+    .footer-gold-text {
+        font-size: 0.75rem;
+    }
+    
+    .footer-main {
+        padding: 40px 0 30px;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .footer-logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .footer-logo-img {
+        height: 40px;
+    }
+    
+    .footer-description {
+        font-size: 0.9rem;
+        padding: 0 15px;
+    }
+    
+    .footer-col h4 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+    
+    .footer-col h4::after {
+        width: 50px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 0.9rem;
+    }
+    
+    .footer-contact li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .footer-contact-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .footer-contact li strong {
+        font-size: 0.9rem;
+    }
+    
+    .footer-contact li p,
+    .footer-contact li a {
+        font-size: 0.85rem;
+    }
+    
+    .footer-address-link {
+        font-size: 0.8rem;
+    }
+    
+    .footer-contact-note {
+        font-size: 0.75rem;
+    }
+    
+    .footer-bottom-content p {
+        font-size: 0.8rem;
+    }
+    
+    .footer-developer p {
+        font-size: 0.8rem;
+    }
+    
     .footer-back-to-top {
         bottom: 20px;
         right: 20px;
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
     }
-
+    
     .footer-back-to-top svg {
         width: 20px;
         height: 20px;
     }
 }
 
+/* Маленькие телефоны */
 @media (max-width: 480px) {
     .footer-main {
-        padding: 40px 0 30px;
+        padding: 30px 0 20px;
     }
-
-    .social-links {
-        justify-content: center;
+    
+    .footer-gold-text {
+        font-size: 0.65rem;
     }
-
+    
+    .footer-logo {
+        gap: 8px;
+    }
+    
+    .footer-logo-text {
+        font-size: 1rem;
+    }
+    
+    .footer-logo-img {
+        height: 35px;
+    }
+    
+    .footer-description {
+        font-size: 0.85rem;
+        padding: 0 10px;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .footer-col h4 {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 8px;
+    }
+    
+    .footer-links a {
+        font-size: 0.85rem;
+    }
+    
     .footer-contact li {
-        flex-direction: column;
-        gap: 5px;
-        text-align: center;
+        margin-bottom: 15px;
     }
-
-    .footer-contact-icon {
-        margin: 0 auto;
+    
+    .footer-contact li strong {
+        font-size: 0.85rem;
+    }
+    
+    .footer-bottom {
+        padding: 20px 0;
+    }
+    
+    .footer-bottom-content p {
+        font-size: 0.7rem;
+    }
+    
+    .footer-developer p {
+        font-size: 0.7rem;
+    }
+    
+    .footer-back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -398,7 +576,7 @@
         visibility: hidden;
         transition: all 0.3s ease;
     }
-
+    
     .footer-back-to-top.visible {
         opacity: 1;
         visibility: visible;

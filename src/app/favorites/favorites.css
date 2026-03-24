@@ -913,3 +913,154 @@
     transition: none;
   }
 }
+
+/* Добавьте/обновите эти стили в favorites.css */
+
+/* Иконки в уведомлениях */
+.notification-icon {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.notification-message {
+    flex: 1;
+}
+
+/* Сортировка с иконкой */
+.sort-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gold);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.favorites-sort-select {
+    padding: 8px 35px 8px 15px;
+    border: 1px solid var(--color-gold-light);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-black);
+    background: var(--color-white);
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.3s ease;
+}
+
+.favorites-sort-select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 2px rgba(198, 164, 92, 0.1);
+}
+
+/* Кнопка выбора */
+.select-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-gold-light);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.favorite-select-btn:hover .select-circle {
+    border-color: var(--color-gold);
+    transform: scale(1.1);
+}
+
+.favorite-select-btn.selected .select-circle {
+    display: none;
+}
+
+/* Кнопки в пустом избранном */
+.empty-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.empty-actions .btn svg {
+    font-size: 1rem;
+}
+
+/* Кнопка подробнее с иконкой */
+.favorite-action-btn.primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.favorite-action-btn.primary svg {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.favorite-action-btn.primary:hover svg {
+    transform: translateX(4px);
+}
+
+/* Анимации для сердечка в пустом избранном */
+.empty-heart svg {
+    width: 60px;
+    height: 60px;
+    color: var(--color-gold);
+    animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Улучшенные hover-эффекты для карточек */
+.favorite-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.favorite-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(198, 164, 92, 0.2);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .sort-select-wrapper {
+        width: 100%;
+    }
+    
+    .favorites-sort-select {
+        width: 100%;
+    }
+    
+    .empty-heart svg {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .favorites-action-btn {
+        width: 48%;
+        height: 45px;
+    }
+    
+    .favorites-action-btn svg {
+        font-size: 1.1rem;
+    }
+    
+    .favorite-action-btn.primary svg {
+        font-size: 0.85rem;
+    }
+}

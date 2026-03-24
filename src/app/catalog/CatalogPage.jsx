@@ -3,6 +3,19 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { 
+    FaHeart, 
+    FaRegHeart, 
+    FaSearch, 
+    FaTimes, 
+    FaRuler, 
+    FaHands,
+    FaSort,
+    FaSortAmountDown,
+    FaSortAmountUp,
+    FaSortAlphaDown,
+    FaSortAlphaUp
+} from 'react-icons/fa';
 import { categories } from '../utils/data';
 import './catalog.css';
 
@@ -14,6 +27,10 @@ export default function CatalogPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [favorites, setFavorites] = useState([]);
     const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+    const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+    // Данные из QuickContacts
+    const phoneNumber = "+998 (91) 718-33-33";
 
     // Загрузка избранного из localStorage при монтировании
     useEffect(() => {
@@ -31,8 +48,8 @@ export default function CatalogPage() {
 
     // Добавление/удаление из избранного
     const toggleFavorite = (e, carpetId) => {
-        e.preventDefault(); // Предотвращаем переход по ссылке
-        e.stopPropagation(); // Останавливаем всплытие события
+        e.preventDefault();
+        e.stopPropagation();
 
         let newFavorites;
         if (favorites.includes(carpetId)) {
@@ -60,27 +77,22 @@ export default function CatalogPage() {
     const getFilteredAndSortedCarpets = () => {
         let filtered = allCarpets;
 
-        // Фильтр по избранному
         if (showFavoritesOnly) {
             filtered = filtered.filter(c => favorites.includes(c.id));
         }
 
-        // Фильтр по категории
         if (selectedCategory !== 'all') {
             filtered = filtered.filter(c => c.categoryId === parseInt(selectedCategory));
         }
 
-        // Фильтр по наличию
         if (inStockOnly) {
             filtered = filtered.filter(c => c.inStock);
         }
 
-        // Фильтр по цене
         filtered = filtered.filter(c =>
             c.price >= priceRange.min && c.price <= priceRange.max
         );
 
-        // Поиск по названию и описанию
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             filtered = filtered.filter(c =>
@@ -89,7 +101,6 @@ export default function CatalogPage() {
             );
         }
 
-        // Сортировка
         switch (sortBy) {
             case 'price-asc':
                 filtered.sort((a, b) => a.price - b.price);
@@ -104,7 +115,6 @@ export default function CatalogPage() {
                 filtered.sort((a, b) => b.name.localeCompare(a.name));
                 break;
             default:
-                // По умолчанию - без сортировки
                 break;
         }
 
@@ -112,6 +122,17 @@ export default function CatalogPage() {
     };
 
     const filteredCarpets = getFilteredAndSortedCarpets();
+
+    // Получение иконки сортировки
+    const getSortIcon = () => {
+        switch (sortBy) {
+            case 'price-asc': return <FaSortAmountUp />;
+            case 'price-desc': return <FaSortAmountDown />;
+            case 'name-asc': return <FaSortAlphaDown />;
+            case 'name-desc': return <FaSortAlphaUp />;
+            default: return <FaSort />;
+        }
+    };
 
     return (
         <div className="catalog-page">
@@ -125,20 +146,49 @@ export default function CatalogPage() {
             </section>
 
             <div className="container catalog-container">
+                {/* Мобильная кнопка фильтров */}
+                <button 
+                    className="mobile-filters-toggle"
+                    onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
+                >
+                    <FaSearch />
+                    <span>Фильтры и сортировка</span>
+                    {isMobileFiltersOpen ? <FaTimes /> : <FaSort />}
+                </button>
+
                 {/* Боковая панель с фильтрами */}
-                <aside className="catalog-sidebar">
-                    <h3>Фильтры</h3>
+                <aside className={`catalog-sidebar ${isMobileFiltersOpen ? 'open' : ''}`}>
+                    <div className="sidebar-header">
+                        <h3>Фильтры</h3>
+                        <button 
+                            className="close-filters"
+                            onClick={() => setIsMobileFiltersOpen(false)}
+                        >
+                            <FaTimes />
+                        </button>
+                    </div>
 
                     {/* Поиск */}
                     <div className="filter-section">
                         <h4>Поиск</h4>
-                        <input
-                            type="text"
-                            placeholder="Поиск ковров..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="filter-search"
-                        />
+                        <div className="search-wrapper">
+                            <FaSearch className="search-icon" />
+                            <input
+                                type="text"
+                                placeholder="Поиск ковров..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="filter-search"
+                            />
+                            {searchQuery && (
+                                <button 
+                                    className="clear-search"
+                                    onClick={() => setSearchQuery('')}
+                                >
+                                    <FaTimes />
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     {/* Категории */}
@@ -246,6 +296,11 @@ export default function CatalogPage() {
                     </button>
                 </aside>
 
+                {/* Оверлей для мобильных фильтров */}
+                {isMobileFiltersOpen && (
+                    <div className="filters-overlay" onClick={() => setIsMobileFiltersOpen(false)}></div>
+                )}
+
                 {/* Основной контент */}
                 <div className="catalog-main">
                     {/* Верхняя панель */}
@@ -256,16 +311,19 @@ export default function CatalogPage() {
 
                         <div className="sort-select">
                             <label>Сортировка:</label>
-                            <select
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value)}
-                            >
-                                <option value="default">По умолчанию</option>
-                                <option value="price-asc">Цена: по возрастанию</option>
-                                <option value="price-desc">Цена: по убыванию</option>
-                                <option value="name-asc">Название: А-Я</option>
-                                <option value="name-desc">Название: Я-А</option>
-                            </select>
+                            <div className="select-wrapper">
+                                <select
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                >
+                                    <option value="default">По умолчанию</option>
+                                    <option value="price-asc">Цена: по возрастанию</option>
+                                    <option value="price-desc">Цена: по убыванию</option>
+                                    <option value="name-asc">Название: А-Я</option>
+                                    <option value="name-desc">Название: Я-А</option>
+                                </select>
+                                <span className="select-icon">{getSortIcon()}</span>
+                            </div>
                         </div>
                     </div>
 
@@ -285,6 +343,7 @@ export default function CatalogPage() {
                                                 width={400}
                                                 height={300}
                                                 layout="responsive"
+                                                className="card-img"
                                             />
                                             {carpet.oldPrice && (
                                                 <span className="card-discount">
@@ -299,19 +358,7 @@ export default function CatalogPage() {
                                                 onClick={(e) => toggleFavorite(e, carpet.id)}
                                                 aria-label={favorites.includes(carpet.id) ? "Удалить из избранного" : "Добавить в избранное"}
                                             >
-                                                <svg
-                                                    viewBox="0 0 24 24"
-                                                    fill={favorites.includes(carpet.id) ? "currentColor" : "none"}
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
-                                                        stroke="currentColor"
-                                                        strokeWidth="2"
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    />
-                                                </svg>
+                                                {favorites.includes(carpet.id) ? <FaHeart /> : <FaRegHeart />}
                                             </button>
                                         </div>
 
@@ -321,8 +368,14 @@ export default function CatalogPage() {
                                             <p className="card-description">{carpet.description.substring(0, 60)}...</p>
 
                                             <div className="card-details">
-                                                <span className="card-size">{carpet.size}</span>
-                                                <span className="card-density">{carpet.density}</span>
+                                                <span className="card-size">
+                                                    <FaRuler className="detail-icon" />
+                                                    {carpet.size}
+                                                </span>
+                                                <span className="card-density">
+                                                    <FaHands className="detail-icon" />
+                                                    {carpet.density}
+                                                </span>
                                             </div>
 
                                             <div className="card-price">
@@ -344,6 +397,7 @@ export default function CatalogPage() {
                         <div className="no-results">
                             {showFavoritesOnly ? (
                                 <>
+                                    <FaHeart className="no-results-icon" />
                                     <h3>В избранном пока нет ковров</h3>
                                     <p>Добавьте понравившиеся ковры в избранное, нажав на сердечко</p>
                                     <button
@@ -355,8 +409,20 @@ export default function CatalogPage() {
                                 </>
                             ) : (
                                 <>
+                                    <FaSearch className="no-results-icon" />
                                     <h3>Ковры не найдены</h3>
                                     <p>Попробуйте изменить параметры фильтрации</p>
+                                    <button
+                                        className="btn btn-outline-gold"
+                                        onClick={() => {
+                                            setSelectedCategory('all');
+                                            setPriceRange({ min: 0, max: 15000 });
+                                            setInStockOnly(false);
+                                            setSearchQuery('');
+                                        }}
+                                    >
+                                        Сбросить фильтры
+                                    </button>
                                 </>
                             )}
                         </div>
@@ -365,4 +431,4 @@ export default function CatalogPage() {
             </div>
         </div>
     );
-};
+}

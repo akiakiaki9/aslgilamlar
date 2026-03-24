@@ -1,14 +1,20 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { FaArrowRight, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import './header.css';
 
 const HeroHeader = () => {
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    // Данные из QuickContacts
+    const phoneNumber = "+998 (91) 718-33-33";
+    const latitude = 39.771648;
+    const longitude = 64.420990;
+    const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
+
     useEffect(() => {
-        // Проверяем мобильное устройство
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
         };
@@ -18,6 +24,17 @@ const HeroHeader = () => {
 
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    const handleLocationClick = () => {
+        const fullAddress = "Asl Gilam, " + address;
+        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
+        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
+
+        window.location.href = deeplink;
+        setTimeout(() => {
+            window.location.href = fallbackUrl;
+        }, 500);
+    };
 
     return (
         <section className="hero">
@@ -31,9 +48,8 @@ const HeroHeader = () => {
                     playsInline
                     className={`hero-video ${isVideoLoaded ? 'loaded' : ''}`}
                     onLoadedData={() => setIsVideoLoaded(true)}
-                    poster="/images/hero-poster.jpg" // Запасной кадр на случай если видео не загрузится
+                    poster="/images/hero-poster.jpg"
                 >
-                    {/* Для мобильных можно использовать другое видео или WebM для лучшей компрессии */}
                     <source
                         src={isMobile ? "https://player.vimeo.com/external/370331493.sd.mp4?s=90f2c344d7bcc5d9c0c9f7f2e8a7a7b7f2e8a7a7&profile_id=139&oauth2_token_id=57447761" : "https://player.vimeo.com/external/370331493.sd.mp4?s=90f2c344d7bcc5d9c0c9f7f2e8a7a7b7f2e8a7a7&profile_id=139&oauth2_token_id=57447761"}
                         type="video/mp4"
@@ -45,42 +61,33 @@ const HeroHeader = () => {
                     Ваш браузер не поддерживает видео.
                 </video>
 
-                {/* Затемнение для лучшей читаемости текста */}
                 <div className="hero-overlay"></div>
-
-                {/* Декоративный золотой градиент */}
                 <div className="hero-gradient"></div>
             </div>
 
             {/* Контент */}
             <div className="hero-content container">
                 <div className="hero-content-wrapper">
-                    {/* Верхний декор */}
                     <div className="hero-decoration-top">
                         <span className="hero-decoration-line"></span>
-                        <span className="hero-decoration-text">Bukhara</span>
+                        <span className="hero-decoration-text">Asl Gilam</span>
                         <span className="hero-decoration-line"></span>
                     </div>
 
-                    {/* Главный заголовок */}
                     <h1 className="hero-title">
                         <span className="hero-title-line">Искусство</span>
-                        <span className="hero-title-line hero-title-gold">Восточных ковров</span>
+                        <span className="hero-title-line hero-title-gold">Бухарских ковров</span>
                     </h1>
 
-                    {/* Подзаголовок */}
                     <p className="hero-subtitle">
-                        Бухара — сердце ковроткачества. Ручная работа, вековые традиции,
-                        непревзойденное качество. Подарите своему дому роскошь Востока.
+                        Ручная работа, вековые традиции, непревзойденное качество.
+                        Подарите своему дому роскошь Востока с Asl Gilam.
                     </p>
 
-                    {/* Кнопки действий */}
                     <div className="hero-buttons">
                         <Link href="/catalog" className="hero-btn hero-btn-primary">
                             Смотреть каталог
-                            <svg className="hero-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <FaArrowRight className="hero-btn-icon" />
                         </Link>
 
                         <Link href="/contacts" className="hero-btn hero-btn-secondary">
@@ -88,7 +95,18 @@ const HeroHeader = () => {
                         </Link>
                     </div>
 
-                    {/* Статистика */}
+                    {/* Быстрые контакты */}
+                    <div className="hero-quick-contacts">
+                        <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="hero-quick-contact">
+                            <FaPhone className="quick-icon" />
+                            <span>{phoneNumber}</span>
+                        </a>
+                        <button onClick={handleLocationClick} className="hero-quick-contact">
+                            <FaMapMarkerAlt className="quick-icon" />
+                            <span>Как добраться</span>
+                        </button>
+                    </div>
+
                     <div className="hero-stats">
                         <div className="hero-stat-item">
                             <span className="hero-stat-number">50+</span>
@@ -104,7 +122,6 @@ const HeroHeader = () => {
                         </div>
                     </div>
 
-                    {/* Индикатор скролла */}
                     <div className="hero-scroll-indicator">
                         <span className="hero-scroll-text">Листайте вниз</span>
                         <div className="hero-scroll-line"></div>
@@ -112,7 +129,6 @@ const HeroHeader = () => {
                 </div>
             </div>
 
-            {/* Золотые акценты по углам */}
             <div className="hero-corner hero-corner-tl"></div>
             <div className="hero-corner hero-corner-tr"></div>
             <div className="hero-corner hero-corner-bl"></div>

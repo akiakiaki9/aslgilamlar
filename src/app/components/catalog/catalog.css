@@ -1,4 +1,5 @@
-/* catalog.css */
+/* catalog.css - обновленная версия */
+
 .featured-catalog {
     padding: 80px 0;
     background: var(--bg-primary);
@@ -8,20 +9,21 @@
 /* Уведомление об избранном */
 .favorite-notification {
     position: fixed;
-    top: 20px;
+    top: 100px;
     right: 20px;
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
-    padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-gold);
+    padding: 14px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(198, 164, 92, 0.4);
     display: flex;
     align-items: center;
     gap: 12px;
     transform: translateX(120%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 1000;
     font-weight: 500;
+    backdrop-filter: blur(10px);
 }
 
 .favorite-notification.show {
@@ -29,9 +31,13 @@
 }
 
 .notification-icon {
-    width: 24px;
-    height: 24px;
-    color: var(--color-white);
+    font-size: 1.2rem;
+    animation: heartBeat 0.5s ease;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
 .section-header {
@@ -40,7 +46,7 @@
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 15px;
     font-family: var(--font-primary);
     color: var(--color-black);
@@ -51,12 +57,12 @@
 .section-header h2::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 80px;
     height: 3px;
-    background: var(--color-gold);
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
 }
 
 .section-header p {
@@ -76,27 +82,30 @@
 }
 
 .filter-btn {
-    padding: 12px 30px;
+    padding: 12px 32px;
     background: transparent;
-    border: 2px solid var(--color-gold-light);
-    border-radius: 30px;
-    font-size: 1rem;
+    border: 2px solid rgba(198, 164, 92, 0.3);
+    border-radius: 40px;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--color-gray-dark);
     cursor: pointer;
     transition: all 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
 .filter-btn:hover {
     background: var(--color-gold-light);
     color: var(--color-white);
     border-color: var(--color-gold-light);
+    transform: translateY(-2px);
 }
 
 .filter-btn.active {
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
-    border-color: var(--color-gold);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(198, 164, 92, 0.3);
 }
 
 /* Сетка ковров */
@@ -109,18 +118,18 @@
 
 .catalog-card {
     background: var(--color-white);
-    border: 1px solid var(--color-gold-light);
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .catalog-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-gold);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(198, 164, 92, 0.15);
 }
 
 /* Контейнер для изображения с hover эффектом */
@@ -128,6 +137,7 @@
     position: relative;
     overflow: hidden;
     aspect-ratio: 4/3;
+    background: #f5f5f5;
 }
 
 .card-image {
@@ -172,10 +182,11 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    width: 40px;
-    height: 40px;
-    background: var(--color-white);
-    border: 1px solid var(--color-gold-light);
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(198, 164, 92, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -184,45 +195,35 @@
     transition: all 0.3s ease;
     z-index: 10;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: var(--color-gold);
 }
 
 .favorite-btn:hover {
     transform: scale(1.1);
-    background: var(--color-gold-light);
+    background: var(--color-gold);
+    color: var(--color-white);
     border-color: var(--color-gold);
 }
 
 .favorite-btn.active {
     background: var(--color-gold);
+    color: var(--color-white);
     border-color: var(--color-gold);
-    color: var(--color-white);
-}
-
-.favorite-btn.active:hover {
-    background: var(--color-gold-dark);
-}
-
-.favorite-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--color-gold);
-}
-
-.favorite-btn.active .favorite-icon {
-    color: var(--color-white);
 }
 
 .card-discount {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
     padding: 5px 12px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-stock {
@@ -230,14 +231,15 @@
     top: 15px;
     right: 15px;
     padding: 5px 12px;
-    border-radius: 4px;
+    border-radius: 20px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     z-index: 2;
 }
 
 .card-stock.out {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
     color: var(--color-white);
 }
 
@@ -253,11 +255,12 @@
 
 .card-category {
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--color-gold);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .card-content h3 {
@@ -266,13 +269,18 @@
     color: var(--color-black);
     font-family: var(--font-primary);
     line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.card-link:hover h3 {
+    color: var(--color-gold);
 }
 
 .card-description {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-gray);
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .card-details {
@@ -280,38 +288,33 @@
     gap: 15px;
     margin-bottom: 15px;
     padding: 10px 0;
-    border-top: 1px solid var(--color-gold-light);
-    border-bottom: 1px solid var(--color-gold-light);
+    border-top: 1px solid rgba(198, 164, 92, 0.2);
+    border-bottom: 1px solid rgba(198, 164, 92, 0.2);
 }
 
 .card-size,
 .card-density {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-gray-dark);
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
 }
 
-.card-size::before {
-    content: '📏';
-    font-size: 1rem;
-}
-
-.card-density::before {
-    content: '🪢';
-    font-size: 1rem;
+.detail-icon {
+    font-size: 0.85rem;
+    color: var(--color-gold);
 }
 
 .card-price {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .price-old {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--color-gray);
     text-decoration: line-through;
 }
@@ -326,11 +329,11 @@
 /* Кнопка заказа на карточке */
 .card-order-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     border: none;
     color: var(--color-white);
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -338,18 +341,17 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: auto;
+    letter-spacing: 1px;
 }
 
 .card-order-btn:hover {
     background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+    gap: 14px;
 }
 
 .card-order-btn .btn-icon {
-    width: 18px;
-    height: 18px;
-    stroke: var(--color-white);
+    font-size: 1rem;
 }
 
 /* Кнопки действий */
@@ -364,28 +366,29 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 14px 35px;
-    font-size: 1rem;
+    gap: 12px;
+    padding: 14px 38px;
+    font-size: 0.95rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-decoration: none;
-    border-radius: 30px;
+    border-radius: 50px;
     transition: all 0.3s ease;
     cursor: pointer;
     border: 2px solid transparent;
 }
 
 .btn-gold {
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
+    box-shadow: 0 4px 12px rgba(198, 164, 92, 0.3);
 }
 
 .btn-gold:hover {
-    background: var(--color-gold-dark);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+    box-shadow: 0 6px 20px rgba(198, 164, 92, 0.4);
+    gap: 14px;
 }
 
 .btn-outline-gold {
@@ -395,36 +398,53 @@
 }
 
 .btn-outline-gold:hover {
-    background: var(--color-gold);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
     color: var(--color-white);
     transform: translateY(-2px);
+    border-color: transparent;
+    gap: 14px;
 }
 
 .btn-icon {
-    width: 20px;
-    height: 20px;
+    font-size: 1rem;
     transition: transform 0.3s ease;
 }
 
 .btn-gold:hover .btn-icon,
 .btn-outline-gold:hover .btn-icon {
-    transform: translateX(5px);
+    transform: translateX(4px);
 }
 
-/* Адаптивность */
+/* ========== АДАПТИВНОСТЬ ========== */
+
 @media (max-width: 1200px) {
     .catalog-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+    
+    .section-header h2 {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 992px) {
     .catalog-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
 
     .section-header h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    
+    .catalog-filters {
+        gap: 12px;
+    }
+    
+    .filter-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
     }
 }
 
@@ -433,42 +453,59 @@
         padding: 60px 0;
     }
 
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
     .catalog-filters {
         gap: 10px;
+        margin-bottom: 40px;
     }
 
     .filter-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 8px 20px;
+        font-size: 0.85rem;
     }
 
     .catalog-actions {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
 
     .btn {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
+        padding: 12px 30px;
     }
 
     .favorite-notification {
+        top: 80px;
         left: 20px;
         right: 20px;
-        top: 10px;
         transform: translateY(-120%);
-        text-align: center;
+        justify-content: center;
     }
 
     .favorite-notification.show {
         transform: translateY(0);
+    }
+    
+    .card-order-btn {
+        padding: 12px;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 576px) {
     .catalog-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 25px;
     }
 
     .section-header h2 {
@@ -476,22 +513,59 @@
     }
 
     .section-header p {
-        font-size: 1rem;
-        padding: 0 20px;
+        font-size: 0.95rem;
+    }
+    
+    .catalog-filters {
+        gap: 8px;
     }
 
-    .card-order-btn {
-        padding: 15px;
+    .filter-btn {
+        padding: 6px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .card-content {
+        padding: 16px;
+    }
+    
+    .card-content h3 {
         font-size: 1.1rem;
     }
-
-    .favorite-btn {
-        width: 35px;
-        height: 35px;
+    
+    .price-current {
+        font-size: 1.3rem;
     }
+    
+    .favorite-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    .card-discount,
+    .card-stock {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
 
-    .favorite-icon {
-        width: 18px;
-        height: 18px;
+@media (max-width: 375px) {
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .filter-btn {
+        padding: 5px 14px;
+        font-size: 0.75rem;
+    }
+    
+    .card-size,
+    .card-density {
+        font-size: 0.75rem;
+    }
+    
+    .price-current {
+        font-size: 1.2rem;
     }
 }
