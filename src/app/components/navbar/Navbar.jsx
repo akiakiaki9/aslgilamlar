@@ -36,14 +36,14 @@ const Navbar = () => {
     };
 
     const handleLocationClick = () => {
-        // Координаты магазина ковров в Бухаре
-        const latitude = 39.783192;
-        const longitude = 64.416122;
-        const address = "махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
+    // Координаты магазина ковров в Бухаре
+    const latitude = 39.783192;
+    const longitude = 64.416122;
+    const address = "махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
 
-        // Открываем в Яндекс.Такси
-        window.open(`https://taxi.yandex.uz/ru/ru/?rfrom=${latitude},${longitude}&rto=${latitude},${longitude}&address=${encodeURIComponent(address)}`, '_blank');
-    };
+    // Открываем в Яндекс Go (такси)
+    window.open(`https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(address)}`, '_blank');
+};
 
     const phoneNumber = "+998 (91) 718-33-33";
 

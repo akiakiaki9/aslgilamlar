@@ -4,17 +4,12 @@ import Link from 'next/link';
 import './quickContacts.css';
 
 const QuickContacts = () => {
-    const phoneNumber = "+998 (91) 123-45-67";
-    const whatsappNumber = "+998911234567";
-    const telegramUsername = "bukhara_carpets";
-    const instagramUsername = "bukhara_carpets";
+    const phoneNumber = "+998 (91) 718-33-33";
+    const telegramUsername = "asl_gilam_buxara";
+    const instagramUsername = "asl_gilam_buxara";
 
     const handleCall = () => {
         window.location.href = `tel:${phoneNumber.replace(/\D/g, '')}`;
-    };
-
-    const handleWhatsApp = () => {
-        window.open(`https://wa.me/${whatsappNumber}`, '_blank');
     };
 
     const handleTelegram = () => {
@@ -26,10 +21,11 @@ const QuickContacts = () => {
     };
 
     const handleLocation = () => {
-        const latitude = 39.7747;
-        const longitude = 64.4286;
-        const address = "Улица Навои, 45, Бухара, Узбекистан";
-        window.open(`https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&ruri=ymapsbm1://geo?ll=${longitude},${latitude}&text=${encodeURIComponent(address)}`, '_blank');
+        const latitude = 39.771648;
+const longitude = 64.420990;
+const address = "Asl Gilam";
+
+window.open(`https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&ruri=ymapsbm1://geo?ll=${longitude},${latitude}&text=${encodeURIComponent(address)}`, '_blank');
     };
 
     return (
@@ -82,23 +78,6 @@ const QuickContacts = () => {
                     <div className="quick-contacts-messengers">
                         <h3>Свяжитесь удобным способом</h3>
                         <div className="messengers-grid">
-                            <button className="messenger-card whatsapp" onClick={handleWhatsApp}>
-                                <div className="messenger-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M16.5 9.5C15.5 8.5 14 8 12.5 8C9.5 8 7 10.5 7 13.5C7 14.5 7.2 15.5 7.8 16.3L7 19L9.7 18.2C10.5 18.8 11.5 19 12.5 19C15.5 19 18 16.5 18 13.5C18 12 17.5 10.5 16.5 9.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                                <div className="messenger-info">
-                                    <span className="messenger-name">WhatsApp</span>
-                                    <span className="messenger-number">{phoneNumber}</span>
-                                </div>
-                                <div className="messenger-arrow">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </div>
-                            </button>
 
                             <button className="messenger-card telegram" onClick={handleTelegram}>
                                 <div className="messenger-icon">
@@ -141,8 +120,8 @@ const QuickContacts = () => {
                         <div className="quick-contacts-hours">
                             <div className="hours-icon">🕒</div>
                             <div className="hours-info">
-                                <span className="hours-title">Режим работы шоурума</span>
-                                <span className="hours-time">Ежедневно: 9:00 - 20:00</span>
+                                <span className="hours-title">Режим работы</span>
+                                <span className="hours-time">Ежедневно: 9:00 - 19:00</span>
                             </div>
                         </div>
                     </div>
