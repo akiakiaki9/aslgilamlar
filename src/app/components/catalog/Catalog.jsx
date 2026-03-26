@@ -10,8 +10,6 @@ const FeaturedCatalog = () => {
     const [activeCategory, setActiveCategory] = useState('all');
     const [visibleCount, setVisibleCount] = useState(4);
     const [favorites, setFavorites] = useState([]);
-    const [showFavoriteNotification, setShowFavoriteNotification] = useState(false);
-    const [notificationMessage, setNotificationMessage] = useState('');
 
     // Данные из QuickContacts
     const phoneNumber = "+998 (91) 718-33-33";
@@ -76,24 +74,18 @@ const FeaturedCatalog = () => {
     const addToFavorites = (carpet) => {
         if (!isInFavorites(carpet.id)) {
             setFavorites([...favorites, carpet]);
-            setNotificationMessage(`${carpet.name} добавлен в избранное`);
-            setShowFavoriteNotification(true);
-            setTimeout(() => setShowFavoriteNotification(false), 3000);
         }
     };
 
     // Удаление из избранного
-    const removeFromFavorites = (carpetId, carpetName) => {
+    const removeFromFavorites = (carpetId) => {
         setFavorites(favorites.filter(item => item.id !== carpetId));
-        setNotificationMessage(`${carpetName} удален из избранного`);
-        setShowFavoriteNotification(true);
-        setTimeout(() => setShowFavoriteNotification(false), 3000);
     };
 
     // Переключение избранного
     const toggleFavorite = (carpet) => {
         if (isInFavorites(carpet.id)) {
-            removeFromFavorites(carpet.id, carpet.name);
+            removeFromFavorites(carpet.id);
         } else {
             addToFavorites(carpet);
         }
@@ -101,12 +93,6 @@ const FeaturedCatalog = () => {
 
     return (
         <section className="featured-catalog">
-            {/* Уведомление о добавлении в избранное */}
-            <div className={`favorite-notification ${showFavoriteNotification ? 'show' : ''}`}>
-                <FaHeart className="notification-icon" />
-                <span>{notificationMessage}</span>
-            </div>
-
             <div className="container">
                 <div className="section-header">
                     <h2>Наши ковры</h2>

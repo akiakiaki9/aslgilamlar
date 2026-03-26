@@ -2,14 +2,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-    FaPhone, 
-    FaInstagram, 
+import {
+    FaPhone,
+    FaInstagram,
     FaTelegram,
     FaBars,
-    FaTimes 
+    FaTimes
 } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
 import './navbar.css';
 
 const Navbar = () => {
@@ -44,11 +43,11 @@ const Navbar = () => {
         document.body.style.overflow = 'unset';
     };
 
-    const handleLocationClick = () => {
+    const handleCallTaxi = () => {
         const fullAddress = "Asl Gilam, " + address;
         const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
         const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
-        
+
         window.location.href = deeplink;
         setTimeout(() => {
             window.location.href = fallbackUrl;
@@ -96,28 +95,36 @@ const Navbar = () => {
                         <span>{phoneNumber}</span>
                     </a>
 
-                    <button className="navbar-location-btn" onClick={handleLocationClick}>
-                        <MdLocationOn className="navbar-icon" />
-                        <span>Как добраться</span>
+                    <button className="navbar-taxi-btn" onClick={handleCallTaxi}>
+                        <img
+                            src="/images/yandex.png"
+                            alt="Yandex Go"
+                            className="yandex-taxi-logo"
+                        />
+                        <span>Вызвать такси</span>
                     </button>
                 </div>
 
                 {/* Мобильные действия */}
                 <div className="navbar-mobile-actions">
-                    <a 
-                        href={`tel:${phoneNumber.replace(/\D/g, '')}`} 
+                    <a
+                        href={`tel:${phoneNumber.replace(/\D/g, '')}`}
                         className="navbar-mobile-icon-btn"
                         aria-label="Позвонить"
                     >
                         <FaPhone />
                     </a>
-                    
-                    <button 
-                        className="navbar-mobile-icon-btn"
-                        onClick={handleLocationClick}
-                        aria-label="Как добраться"
+
+                    <button
+                        className="navbar-mobile-icon-btn yandex-taxi-mobile"
+                        onClick={handleCallTaxi}
+                        aria-label="Вызвать такси"
                     >
-                        <MdLocationOn />
+                        <img
+                            src="/images/yandex.png"
+                            alt="Yandex Go"
+                            className="yandex-taxi-logo-small"
+                        />
                     </button>
 
                     <button
@@ -149,9 +156,9 @@ const Navbar = () => {
 
                     <div className="navbar-mobile-menu-content">
                         {navLinks.map((link) => (
-                            <Link 
-                                key={link.href} 
-                                href={link.href} 
+                            <Link
+                                key={link.href}
+                                href={link.href}
                                 className="navbar-mobile-link"
                                 onClick={closeMenu}
                             >
@@ -169,19 +176,20 @@ const Navbar = () => {
                                 </a>
                             </div>
 
-                            <button 
-                                className="navbar-mobile-location-btn"
-                                onClick={handleLocationClick}
-                            >
-                                <MdLocationOn className="btn-icon" />
-                                <span>Построить маршрут</span>
+                            <button className="navbar-taxi-btn" onClick={handleCallTaxi}>
+                                <img
+                                    src="/images/yandex.png"
+                                    alt="Yandex Go"
+                                    className="yandex-taxi-logo"
+                                />
+                                <span>Яндекс Go</span>
                             </button>
                         </div>
 
                         <div className="navbar-mobile-social">
                             <p className="social-title">Мы в соцсетях</p>
                             <div className="social-links">
-                                <a 
+                                <a
                                     href={`https://instagram.com/${instagramUsername}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -190,7 +198,7 @@ const Navbar = () => {
                                 >
                                     <FaInstagram />
                                 </a>
-                                <a 
+                                <a
                                     href={`https://t.me/${telegramUsername}`}
                                     target="_blank"
                                     rel="noopener noreferrer"

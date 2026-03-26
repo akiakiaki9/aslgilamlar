@@ -103,7 +103,7 @@ const HeroHeader = () => {
                         </a>
                         <button onClick={handleLocationClick} className="hero-quick-contact">
                             <FaMapMarkerAlt className="quick-icon" />
-                            <span>Как добраться</span>
+                            <span>Вызвать такси</span>
                         </button>
                     </div>
 

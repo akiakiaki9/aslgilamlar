@@ -572,3 +572,135 @@
         font-size: 1.1rem;
     }
 }
+
+/* Кнопка вызова такси - желто-черная */
+.navbar-taxi-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFD600;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.navbar-taxi-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.navbar-taxi-btn:hover::before {
+    left: 100%;
+}
+
+.navbar-taxi-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: #FFE600;
+}
+
+.yandex-taxi-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Мобильная версия кнопки такси */
+.navbar-mobile-icon-btn.yandex-taxi-mobile {
+    background: #FFD600;
+    color: #000000;
+}
+
+.yandex-taxi-logo-small {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Кнопка такси в мобильном меню */
+.navbar-mobile-taxi-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #FFD600;
+    border: none;
+    border-radius: 12px;
+    color: #000000;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-mobile-taxi-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.navbar-mobile-taxi-btn:hover::before {
+    left: 100%;
+}
+
+.navbar-mobile-taxi-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.yandex-taxi-logo-mobile {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 1200px) {
+    .navbar-taxi-btn span {
+        display: none;
+    }
+    
+    .navbar-taxi-btn {
+        padding: 8px;
+        border-radius: 50%;
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    .yandex-taxi-logo {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-taxi-btn {
+        display: none;
+    }
+}

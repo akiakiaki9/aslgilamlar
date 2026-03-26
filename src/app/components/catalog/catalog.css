@@ -1,5 +1,3 @@
-/* catalog.css - обновленная версия */
-
 .featured-catalog {
     padding: 80px 0;
     background: var(--bg-primary);
@@ -36,8 +34,15 @@
 }
 
 @keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
 }
 
 .section-header {
@@ -422,7 +427,7 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
     }
-    
+
     .section-header h2 {
         font-size: 2.5rem;
     }
@@ -437,11 +442,11 @@
     .section-header h2 {
         font-size: 2.2rem;
     }
-    
+
     .catalog-filters {
         gap: 12px;
     }
-    
+
     .filter-btn {
         padding: 10px 24px;
         font-size: 0.9rem;
@@ -456,7 +461,7 @@
     .section-header h2 {
         font-size: 2rem;
     }
-    
+
     .section-header p {
         font-size: 1rem;
         padding: 0 20px;
@@ -495,7 +500,7 @@
     .favorite-notification.show {
         transform: translateY(0);
     }
-    
+
     .card-order-btn {
         padding: 12px;
         font-size: 0.9rem;
@@ -515,7 +520,7 @@
     .section-header p {
         font-size: 0.95rem;
     }
-    
+
     .catalog-filters {
         gap: 8px;
     }
@@ -524,25 +529,25 @@
         padding: 6px 16px;
         font-size: 0.8rem;
     }
-    
+
     .card-content {
         padding: 16px;
     }
-    
+
     .card-content h3 {
         font-size: 1.1rem;
     }
-    
+
     .price-current {
         font-size: 1.3rem;
     }
-    
+
     .favorite-btn {
         width: 36px;
         height: 36px;
         font-size: 1rem;
     }
-    
+
     .card-discount,
     .card-stock {
         font-size: 0.7rem;
@@ -554,17 +559,17 @@
     .section-header h2 {
         font-size: 1.6rem;
     }
-    
+
     .filter-btn {
         padding: 5px 14px;
         font-size: 0.75rem;
     }
-    
+
     .card-size,
     .card-density {
         font-size: 0.75rem;
     }
-    
+
     .price-current {
         font-size: 1.2rem;
     }
