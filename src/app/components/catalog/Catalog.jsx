@@ -181,7 +181,7 @@ const FeaturedCatalog = () => {
                                         </span>
                                     </div>
 
-                                    <div className="card-price">
+                                    {/* <div className="card-price">
                                         {carpet.oldPrice ? (
                                             <>
                                                 <span className="price-old">{carpet.oldPrice} $</span>
@@ -190,7 +190,7 @@ const FeaturedCatalog = () => {
                                         ) : (
                                             <span className="price-current">{carpet.price} $</span>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </Link>
                             </div>
 

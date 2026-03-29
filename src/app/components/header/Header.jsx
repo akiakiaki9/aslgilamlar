@@ -9,7 +9,7 @@ const HeroHeader = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     // Данные из QuickContacts
-    const phoneNumber = "+998 (91) 718-33-33";
+    const phoneNumber = "+998 (99) 620-33-33";
     const latitude = 39.771648;
     const longitude = 64.420990;
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";

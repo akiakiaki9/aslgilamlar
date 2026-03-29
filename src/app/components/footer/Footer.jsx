@@ -10,7 +10,7 @@ const Footer = () => {
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     // Данные из QuickContacts
-    const phoneNumber = "+998 (91) 718-33-33";
+    const phoneNumber = "+998 (99) 620-33-33";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";

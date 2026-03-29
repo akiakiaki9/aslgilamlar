@@ -4,7 +4,7 @@ import './contacts.css';
 
 export default function ContactsClient() {
     // Данные из QuickContacts
-    const phoneNumber = "+998 (91) 718-33-33";
+    const phoneNumber = "+998 (99) 620-33-33";
     const phoneRaw = "+99891718333";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";

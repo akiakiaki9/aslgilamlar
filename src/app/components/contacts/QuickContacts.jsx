@@ -4,7 +4,7 @@ import Link from 'next/link';
 import './quickContacts.css';
 
 const QuickContacts = () => {
-    const phoneNumber = "+998 (91) 718-33-33";
+    const phoneNumber = "+998 (99) 620-33-33";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";
 
