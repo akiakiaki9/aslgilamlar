@@ -18,10 +18,8 @@ const Footer = () => {
     const latitude = 39.783096;
     const longitude = 64.416101;
 
-    // Основные категории для футера
     const mainCategories = categories.slice(0, 6);
 
-    // Отслеживаем скролл для кнопки "Наверх"
     useEffect(() => {
         const handleScroll = () => {
             setShowBackToTop(window.scrollY > 300);
@@ -35,15 +33,18 @@ const Footer = () => {
     };
 
     const handleLocationClick = () => {
-        const fullAddress = `Asl Gilam, ${address}`;
-        // Яндекс Карты с маршрутом
-        const yandexMapsUrl = `https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&z=17`;
-        window.location.href = yandexMapsUrl;
+        const fullAddress = "Asl Gilam, " + address;
+        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
+        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
+
+        window.location.href = deeplink;
+        setTimeout(() => {
+            window.location.href = fallbackUrl;
+        }, 500);
     };
 
     return (
         <footer className="footer">
-            {/* Золотая декоративная полоса сверху */}
             <div className="footer-gold-bar">
                 <div className="container">
                     <div className="footer-gold-bar-content">
@@ -60,7 +61,6 @@ const Footer = () => {
             <div className="footer-main">
                 <div className="container">
                     <div className="footer-grid">
-                        {/* Колонка 1: Логотип и информация */}
                         <div className="footer-col footer-about">
                             <div className="footer-logo">
                                 <Image
@@ -99,7 +99,6 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Колонка 2: Категории */}
                         <div className="footer-col">
                             <h4>Категории</h4>
                             <ul className="footer-links">
@@ -121,7 +120,6 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        {/* Колонка 3: Контакты */}
                         <div className="footer-col">
                             <h4>Контакты</h4>
                             <ul className="footer-contact">
@@ -133,7 +131,7 @@ const Footer = () => {
                                         <strong>Адрес:</strong>
                                         <p>{address}</p>
                                         <button onClick={handleLocationClick} className="footer-address-link">
-                                            Построить маршрут →
+                                            Вызвать такси →
                                         </button>
                                     </div>
                                 </li>
@@ -163,7 +161,6 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Нижняя часть с копирайтом */}
             <div className="footer-bottom">
                 <div className="container">
                     <div className="footer-bottom-content">
@@ -175,7 +172,6 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Кнопка "Наверх" */}
             <button
                 className={`footer-back-to-top ${showBackToTop ? 'visible' : ''}`}
                 onClick={handleBackToTop}
