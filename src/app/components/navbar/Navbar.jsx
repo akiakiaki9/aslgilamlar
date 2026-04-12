@@ -15,12 +15,13 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    // Данные из QuickContacts
+    // Данные из QuickContacts - ИСПРАВЛЕНЫ КООРДИНАТЫ
     const phoneNumber = "+998 (99) 620-33-33";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";
-    const latitude = 39.771648;
-    const longitude = 64.420990;
+    // ПРАВИЛЬНЫЕ КООРДИНАТЫ из вашей ссылки:
+    const latitude = 39.783096;
+    const longitude = 64.416101;
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
     const workHours = "Ежедневно: 9:00 - 19:00";
 
@@ -44,14 +45,29 @@ const Navbar = () => {
     };
 
     const handleCallTaxi = () => {
-        const fullAddress = "Asl Gilam, " + address;
-        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
-        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
+        // Формируем полный адрес для отображения
+        const fullAddress = `Asl Gilam, ${address}`;
 
-        window.location.href = deeplink;
+        // Вариант 1: Яндекс Карты (лучше для построения маршрута)
+        const yandexMapsUrl = `https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&z=17`;
+
+        // Вариант 2: Яндекс Такси (deeplink для приложения)
+        const taxiDeeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
+
+        // Вариант 3: fallback URL для браузера
+        const taxiFallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
+
+        // Пробуем открыть Яндекс Карты (лучше для просмотра маршрута)
+        // Если нужно именно такси - раскомментируйте taxi вариант и закомментируйте maps
+        window.location.href = yandexMapsUrl;
+
+        // Альтернатива: если хотите сразу такси, используйте этот код:
+        /*
+        window.location.href = taxiDeeplink;
         setTimeout(() => {
-            window.location.href = fallbackUrl;
+            window.location.href = taxiFallbackUrl;
         }, 500);
+        */
     };
 
     const navLinks = [
@@ -101,7 +117,7 @@ const Navbar = () => {
                             alt="Yandex Go"
                             className="yandex-taxi-logo"
                         />
-                        <span>Вызвать такси</span>
+                        <span>Построить маршрут</span>
                     </button>
                 </div>
 
@@ -118,7 +134,7 @@ const Navbar = () => {
                     <button
                         className="navbar-mobile-icon-btn yandex-taxi-mobile"
                         onClick={handleCallTaxi}
-                        aria-label="Вызвать такси"
+                        aria-label="Построить маршрут"
                     >
                         <img
                             src="/images/yandex.png"
@@ -182,7 +198,7 @@ const Navbar = () => {
                                     alt="Yandex Go"
                                     className="yandex-taxi-logo"
                                 />
-                                <span>Яндекс Go</span>
+                                <span>Построить маршрут</span>
                             </button>
                         </div>
 
