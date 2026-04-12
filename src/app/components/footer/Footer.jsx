@@ -9,12 +9,14 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     const [showBackToTop, setShowBackToTop] = useState(false);
 
-    // Данные из QuickContacts
+    // Данные из QuickContacts - ИСПРАВЛЕНЫ КООРДИНАТЫ
     const phoneNumber = "+998 (99) 620-33-33";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
     const workHours = "Ежедневно: 9:00 - 19:00";
+    const latitude = 39.783096;
+    const longitude = 64.416101;
 
     // Основные категории для футера
     const mainCategories = categories.slice(0, 6);
@@ -33,22 +35,10 @@ const Footer = () => {
     };
 
     const handleLocationClick = () => {
-        const latitude = 39.771648;
-        const longitude = 64.420990;
-        const fullAddress = "Asl Gilam, " + address;
-
-        // Deeplink для Яндекс Go приложения
-        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
-        // Fallback на случай, если приложение не установлено
-        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
-
-        // Пробуем открыть приложение
-        window.location.href = deeplink;
-
-        // Таймаут для fallback (если приложение не открылось)
-        setTimeout(() => {
-            window.location.href = fallbackUrl;
-        }, 500);
+        const fullAddress = `Asl Gilam, ${address}`;
+        // Яндекс Карты с маршрутом
+        const yandexMapsUrl = `https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&z=17`;
+        window.location.href = yandexMapsUrl;
     };
 
     return (

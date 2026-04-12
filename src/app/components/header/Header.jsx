@@ -8,10 +8,10 @@ const HeroHeader = () => {
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    // Данные из QuickContacts
+    // Данные из QuickContacts - ИСПРАВЛЕНЫ КООРДИНАТЫ
     const phoneNumber = "+998 (99) 620-33-33";
-    const latitude = 39.771648;
-    const longitude = 64.420990;
+    const latitude = 39.783096;
+    const longitude = 64.416101;
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
 
     useEffect(() => {
@@ -38,7 +38,6 @@ const HeroHeader = () => {
 
     return (
         <section className="hero">
-            {/* Видео фон */}
             <div className="hero-video-container">
                 {!isVideoLoaded && <div className="hero-video-placeholder"></div>}
                 <video
@@ -65,7 +64,6 @@ const HeroHeader = () => {
                 <div className="hero-gradient"></div>
             </div>
 
-            {/* Контент */}
             <div className="hero-content container">
                 <div className="hero-content-wrapper">
                     <div className="hero-decoration-top">
@@ -95,7 +93,6 @@ const HeroHeader = () => {
                         </Link>
                     </div>
 
-                    {/* Быстрые контакты */}
                     <div className="hero-quick-contacts">
                         <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="hero-quick-contact">
                             <FaPhone className="quick-icon" />

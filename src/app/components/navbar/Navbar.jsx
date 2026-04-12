@@ -19,7 +19,7 @@ const Navbar = () => {
     const phoneNumber = "+998 (99) 620-33-33";
     const telegramUsername = "asl_gilam_buxara";
     const instagramUsername = "asl_gilam_buxara";
-    // ПРАВИЛЬНЫЕ КООРДИНАТЫ из вашей ссылки:
+    // ПРАВИЛЬНЫЕ КООРДИНАТЫ
     const latitude = 39.783096;
     const longitude = 64.416101;
     const address = "Бухара, махаллинский сход граждан Мирзо Улугбек, ул. Ахмада Яссавий, 98";
@@ -45,29 +45,14 @@ const Navbar = () => {
     };
 
     const handleCallTaxi = () => {
-        // Формируем полный адрес для отображения
-        const fullAddress = `Asl Gilam, ${address}`;
+        const fullAddress = "Asl Gilam, " + address;
+        const deeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
+        const fallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
 
-        // Вариант 1: Яндекс Карты (лучше для построения маршрута)
-        const yandexMapsUrl = `https://yandex.uz/maps/?rtext=~${latitude},${longitude}&rtt=auto&z=17`;
-
-        // Вариант 2: Яндекс Такси (deeplink для приложения)
-        const taxiDeeplink = `yandextaxi://route/?end-lat=${latitude}&end-lon=${longitude}&end-address=${encodeURIComponent(fullAddress)}`;
-
-        // Вариант 3: fallback URL для браузера
-        const taxiFallbackUrl = `https://taxi.yandex.uz/?rto=${latitude},${longitude}&text=${encodeURIComponent(fullAddress)}`;
-
-        // Пробуем открыть Яндекс Карты (лучше для просмотра маршрута)
-        // Если нужно именно такси - раскомментируйте taxi вариант и закомментируйте maps
-        window.location.href = yandexMapsUrl;
-
-        // Альтернатива: если хотите сразу такси, используйте этот код:
-        /*
-        window.location.href = taxiDeeplink;
+        window.location.href = deeplink;
         setTimeout(() => {
-            window.location.href = taxiFallbackUrl;
+            window.location.href = fallbackUrl;
         }, 500);
-        */
     };
 
     const navLinks = [
@@ -80,7 +65,6 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
             <div className="navbar-container container">
-                {/* Логотип - только для ПК версии, в мобильном меню скрывается */}
                 <Link href="/" className="navbar-logo" onClick={closeMenu}>
                     <Image
                         src="/images/logo.png"
@@ -95,7 +79,6 @@ const Navbar = () => {
                     </span>
                 </Link>
 
-                {/* Десктопное меню */}
                 <div className="navbar-menu">
                     {navLinks.map((link) => (
                         <Link key={link.href} href={link.href} className="navbar-link">
@@ -104,7 +87,6 @@ const Navbar = () => {
                     ))}
                 </div>
 
-                {/* Десктопные действия */}
                 <div className="navbar-actions">
                     <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="navbar-phone">
                         <FaPhone className="navbar-icon" />
@@ -117,11 +99,10 @@ const Navbar = () => {
                             alt="Yandex Go"
                             className="yandex-taxi-logo"
                         />
-                        <span>Построить маршрут</span>
+                        <span>Вызвать такси</span>
                     </button>
                 </div>
 
-                {/* Мобильные действия */}
                 <div className="navbar-mobile-actions">
                     <a
                         href={`tel:${phoneNumber.replace(/\D/g, '')}`}
@@ -134,7 +115,7 @@ const Navbar = () => {
                     <button
                         className="navbar-mobile-icon-btn yandex-taxi-mobile"
                         onClick={handleCallTaxi}
-                        aria-label="Построить маршрут"
+                        aria-label="Вызвать такси"
                     >
                         <img
                             src="/images/yandex.png"
@@ -152,7 +133,6 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Мобильное меню */}
                 <div className={`navbar-mobile-menu ${isOpen ? 'active' : ''}`}>
                     <div className="navbar-mobile-menu-header">
                         <div className="navbar-mobile-logo">
@@ -198,7 +178,7 @@ const Navbar = () => {
                                     alt="Yandex Go"
                                     className="yandex-taxi-logo"
                                 />
-                                <span>Построить маршрут</span>
+                                <span>Яндекс Go</span>
                             </button>
                         </div>
 
@@ -237,7 +217,6 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                {/* Оверлей */}
                 {isOpen && <div className="navbar-overlay" onClick={closeMenu}></div>}
             </div>
         </nav>
