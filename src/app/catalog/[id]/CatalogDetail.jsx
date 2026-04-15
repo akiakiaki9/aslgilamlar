@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { categories } from '@/app/utils/data';
 import './catalogdetail.css';
@@ -92,7 +91,7 @@ export default function CarpetDetailPage() {
                     {/* Галерея изображений */}
                     <div className="carpet-gallery">
                         <div className="gallery-main">
-                            <Image
+                            <img
                                 src={images[selectedImage] || carpet.image}
                                 alt={carpet.name}
                                 width={800}
@@ -118,7 +117,7 @@ export default function CarpetDetailPage() {
                                         className={`thumbnail-btn ${selectedImage === index ? 'active' : ''}`}
                                         onClick={() => setSelectedImage(index)}
                                     >
-                                        <Image
+                                        <img
                                             src={img}
                                             alt={`${carpet.name} - вид ${index + 1}`}
                                             width={100}
@@ -142,7 +141,7 @@ export default function CarpetDetailPage() {
                         </div>
 
                         <div className="info-price-block">
-                            {carpet.oldPrice ? (
+                            {/* {carpet.oldPrice ? (
                                 <div className="price-block">
                                     <span className="price-old">{carpet.oldPrice} $</span>
                                     <span className="price-current">{carpet.price} $</span>
@@ -154,7 +153,7 @@ export default function CarpetDetailPage() {
                                 <div className="price-block">
                                     <span className="price-current">{carpet.price} $</span>
                                 </div>
-                            )}
+                            )} */}
                         </div>
 
                         <div className="info-availability">
@@ -369,7 +368,7 @@ export default function CarpetDetailPage() {
                                     className="similar-card"
                                 >
                                     <div className="similar-image">
-                                        <Image
+                                        <img
                                             src={similar.image}
                                             alt={similar.name}
                                             width={300}
@@ -379,14 +378,14 @@ export default function CarpetDetailPage() {
                                     <div className="similar-info">
                                         <h3>{similar.name}</h3>
                                         <div className="similar-price">
-                                            {similar.oldPrice ? (
+                                            {/* {similar.oldPrice ? (
                                                 <>
                                                     <span className="price-old">{similar.oldPrice} $</span>
                                                     <span className="price-current">{similar.price} $</span>
                                                 </>
                                             ) : (
                                                 <span className="price-current">{similar.price} $</span>
-                                            )}
+                                            )} */}
                                         </div>
                                     </div>
                                 </Link>

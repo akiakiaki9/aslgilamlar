@@ -41,7 +41,7 @@
     width: 100%;
     height: 100%;
     background: var(--color-black);
-    background-image: url('/images/hero-poster.jpg');
+    background-image: url('/images/header/hero.png');
     background-size: cover;
     background-position: center;
 }
@@ -397,6 +397,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -407,6 +408,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -418,13 +420,16 @@
         transform: scaleY(0);
         transform-origin: top;
     }
+
     50% {
         transform: scaleY(1);
         transform-origin: top;
     }
+
     50.1% {
         transform-origin: bottom;
     }
+
     100% {
         transform: scaleY(0);
         transform-origin: bottom;
@@ -437,15 +442,15 @@
     .hero-title-line {
         font-size: 4rem;
     }
-    
+
     .hero-title-gold {
         font-size: 4.5rem;
     }
-    
+
     .hero-stats {
         gap: 60px;
     }
-    
+
     .hero-stat-number {
         font-size: 2.5rem;
     }
@@ -455,47 +460,47 @@
     .hero-title-line {
         font-size: 3.5rem;
     }
-    
+
     .hero-title-gold {
         font-size: 4rem;
     }
-    
+
     .hero-title-gold::before,
     .hero-title-gold::after {
         font-size: 1.2rem;
     }
-    
+
     .hero-title-gold::before {
         left: -35px;
     }
-    
+
     .hero-title-gold::after {
         right: -35px;
     }
-    
+
     .hero-subtitle {
         font-size: 1.2rem;
         padding: 0 30px;
     }
-    
+
     .hero-quick-contacts {
         flex-wrap: wrap;
         gap: 20px;
     }
-    
+
     .hero-stats {
         gap: 40px;
     }
-    
+
     .hero-corner {
         width: 80px;
         height: 80px;
     }
-    
+
     .hero-corner-tl {
         top: 80px;
     }
-    
+
     .hero-corner-tr {
         top: 80px;
     }
@@ -505,31 +510,31 @@
     .hero {
         min-height: 700px;
     }
-    
+
     .hero-content {
         padding-top: 70px;
     }
-    
+
     .hero-title-line {
         font-size: 2.8rem;
     }
-    
+
     .hero-title-gold {
         font-size: 3.2rem;
     }
-    
+
     .hero-title-gold::before,
     .hero-title-gold::after {
         display: none;
     }
-    
+
     .hero-subtitle {
         font-size: 1.1rem;
         padding: 0 20px;
         line-height: 1.6;
         margin-bottom: 30px;
     }
-    
+
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
@@ -539,76 +544,76 @@
         margin-right: auto;
         margin-bottom: 30px;
     }
-    
+
     .hero-btn {
         width: 100%;
         padding: 14px 30px;
     }
-    
+
     .hero-quick-contacts {
         margin-bottom: 40px;
     }
-    
+
     .hero-quick-contact {
         padding: 8px 18px;
         font-size: 0.85rem;
     }
-    
+
     .hero-stats {
         gap: 30px;
         flex-wrap: wrap;
     }
-    
+
     .hero-stat-number {
         font-size: 2.2rem;
     }
-    
+
     .hero-stat-label {
         font-size: 0.9rem;
     }
-    
+
     .hero-decoration-line {
         width: 40px;
     }
-    
+
     .hero-decoration-text {
         font-size: 1rem;
         letter-spacing: 3px;
     }
-    
+
     .hero-corner {
         width: 60px;
         height: 60px;
     }
-    
+
     .hero-corner-tl {
         top: 70px;
         left: 15px;
     }
-    
+
     .hero-corner-tr {
         top: 70px;
         right: 15px;
     }
-    
+
     .hero-corner-bl {
         bottom: 15px;
         left: 15px;
     }
-    
+
     .hero-corner-br {
         bottom: 15px;
         right: 15px;
     }
-    
+
     .hero-scroll-indicator {
         bottom: 20px;
     }
-    
+
     .hero-scroll-text {
         font-size: 0.8rem;
     }
-    
+
     .hero-scroll-line {
         height: 40px;
     }
@@ -618,110 +623,110 @@
     .hero {
         min-height: 650px;
     }
-    
+
     .hero-content {
         padding-top: 60px;
     }
-    
+
     .hero-title-line {
         font-size: 2.2rem;
     }
-    
+
     .hero-title-gold {
         font-size: 2.6rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem;
         padding: 0 15px;
         margin-bottom: 25px;
     }
-    
+
     .hero-buttons {
         padding: 0 15px;
         margin-bottom: 25px;
     }
-    
+
     .hero-btn {
         padding: 12px 20px;
         font-size: 0.9rem;
     }
-    
+
     .hero-quick-contacts {
         gap: 15px;
         margin-bottom: 35px;
     }
-    
+
     .hero-quick-contact {
         padding: 6px 14px;
         font-size: 0.8rem;
     }
-    
+
     .quick-icon {
         font-size: 0.85rem;
     }
-    
+
     .hero-stats {
         gap: 20px;
     }
-    
+
     .hero-stat-number {
         font-size: 1.8rem;
     }
-    
+
     .hero-stat-label {
         font-size: 0.8rem;
         letter-spacing: 1px;
     }
-    
+
     .hero-decoration-top {
         gap: 15px;
         margin-bottom: 20px;
     }
-    
+
     .hero-decoration-line {
         width: 30px;
     }
-    
+
     .hero-decoration-text {
         font-size: 0.9rem;
         letter-spacing: 2px;
     }
-    
+
     .hero-corner {
         width: 40px;
         height: 40px;
         border-width: 1px;
     }
-    
+
     .hero-corner-tl {
         top: 60px;
         left: 10px;
     }
-    
+
     .hero-corner-tr {
         top: 60px;
         right: 10px;
     }
-    
+
     .hero-corner-bl {
         bottom: 10px;
         left: 10px;
     }
-    
+
     .hero-corner-br {
         bottom: 10px;
         right: 10px;
     }
-    
+
     .hero-scroll-indicator {
         bottom: 15px;
     }
-    
+
     .hero-scroll-text {
         font-size: 0.7rem;
     }
-    
+
     .hero-scroll-line {
         height: 30px;
     }
@@ -731,28 +736,28 @@
     .hero-title-line {
         font-size: 1.8rem;
     }
-    
+
     .hero-title-gold {
         font-size: 2.2rem;
     }
-    
+
     .hero-subtitle {
         font-size: 0.9rem;
     }
-    
+
     .hero-stat-number {
         font-size: 1.5rem;
     }
-    
+
     .hero-stat-label {
         font-size: 0.7rem;
     }
-    
+
     .hero-quick-contact {
         padding: 5px 12px;
         font-size: 0.75rem;
     }
-    
+
     .quick-icon {
         font-size: 0.8rem;
     }
@@ -763,36 +768,36 @@
     .hero {
         min-height: 500px;
     }
-    
+
     .hero-content {
         padding-top: 50px;
     }
-    
+
     .hero-title-line {
         font-size: 2rem;
     }
-    
+
     .hero-title-gold {
         font-size: 2.3rem;
     }
-    
+
     .hero-subtitle {
         font-size: 0.9rem;
         margin-bottom: 20px;
     }
-    
+
     .hero-buttons {
         margin-bottom: 20px;
     }
-    
+
     .hero-quick-contacts {
         margin-bottom: 25px;
     }
-    
+
     .hero-stats {
         margin-bottom: 20px;
     }
-    
+
     .hero-scroll-indicator {
         bottom: 10px;
     }
@@ -800,6 +805,7 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
     .hero-video,
     .hero-content-wrapper,
     .hero-decoration-top,
@@ -814,7 +820,7 @@
         animation: none;
         transition: none;
     }
-    
+
     .hero-scroll-line {
         animation: none;
     }

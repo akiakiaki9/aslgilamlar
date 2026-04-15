@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaHeart, FaRegHeart, FaPhone, FaArrowRight, FaRuler, FaHands } from 'react-icons/fa';
 import { categories } from '@/app/utils/data';
 import './catalog.css';
@@ -125,7 +124,7 @@ const FeaturedCatalog = () => {
                             <div className="card-image-container">
                                 <Link href={`/catalog/${carpet.id}`} className="card-link">
                                     <div className="card-image">
-                                        <Image
+                                        <img
                                             src={carpet.image}
                                             alt={carpet.name}
                                             width={400}
@@ -135,7 +134,7 @@ const FeaturedCatalog = () => {
                                         />
                                         {/* Hover эффект - вторая картинка (если есть) */}
                                         <div className="card-image-hover">
-                                            <Image
+                                            <img
                                                 src={carpet.imageHover || carpet.image}
                                                 alt={carpet.name}
                                                 width={400}

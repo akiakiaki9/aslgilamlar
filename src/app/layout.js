@@ -43,14 +43,17 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
-  themeColor: "#b22222",
   category: "home goods",
-};                                           
+};
+
+// ✅ ВЫНЕСЕНО В ОТДЕЛЬНЫЙ ЭКСПОРТ viewport
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#b22222",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
@@ -76,4 +79,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-};
+}

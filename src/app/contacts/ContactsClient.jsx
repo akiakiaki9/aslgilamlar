@@ -1,5 +1,4 @@
 'use client';
-
 import './contacts.css';
 
 export default function ContactsClient() {
@@ -31,36 +30,6 @@ export default function ContactsClient() {
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "LocalBusiness",
-                        "name": "Asl Gilam",
-                        "image": "https://aslgilamlarbukhara.uz/images/logo.png",
-                        "description": "Магазин фабричных ковров в Бухаре. Широкий выбор ковров от производителей.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "ул. Ахмада Яссавий, 98",
-                            "addressLocality": "Бухара",
-                            "addressCountry": "UZ"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": latitude,
-                            "longitude": longitude
-                        },
-                        "telephone": phoneRaw,
-                        "openingHours": ["Mo-Su 09:00-19:00"],
-                        "sameAs": [
-                            `https://t.me/${telegramUsername}`,
-                            `https://instagram.com/${instagramUsername}`
-                        ]
-                    })
-                }}
-            />
-
             <div className="contacts-page">
                 <section className="contacts-hero" aria-label="Hero секция контактов">
                     <div className="contacts-hero-overlay" aria-hidden="true"></div>
@@ -220,4 +189,4 @@ export default function ContactsClient() {
             </div>
         </>
     );
-}
+};

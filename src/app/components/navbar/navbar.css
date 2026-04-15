@@ -578,7 +578,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #FFD600;
+    background: #F8E500;
     color: #000000;
     border: none;
     padding: 8px 16px;
@@ -611,7 +611,7 @@
 .navbar-taxi-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    background: #FFE600;
+    background: #F8E500;
 }
 
 .yandex-taxi-logo {
@@ -622,7 +622,7 @@
 
 /* Мобильная версия кнопки такси */
 .navbar-mobile-icon-btn.yandex-taxi-mobile {
-    background: #FFD600;
+    background: #F8E500;
     color: #000000;
 }
 
@@ -641,7 +641,7 @@
     width: 100%;
     padding: 12px;
     margin-top: 20px;
-    background: #FFD600;
+    background: #F8E500;
     border: none;
     border-radius: 12px;
     color: #000000;

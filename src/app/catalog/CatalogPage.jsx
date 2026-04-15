@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { 
     FaHeart, 
     FaRegHeart, 
@@ -337,7 +336,7 @@ export default function CatalogPage() {
                                         className="catalog-card"
                                     >
                                         <div className="card-image">
-                                            <Image
+                                            <img
                                                 src={carpet.image}
                                                 alt={carpet.name}
                                                 width={400}
