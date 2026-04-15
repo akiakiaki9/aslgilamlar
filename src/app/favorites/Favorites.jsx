@@ -17,7 +17,11 @@ import {
     FaInfoCircle,
     FaExclamationTriangle,
     FaCheckCircle,
-    FaTimesCircle
+    FaTimesCircle,
+    FaRegHeart,
+    FaStar,
+    FaTruck,
+    FaShieldAlt
 } from 'react-icons/fa';
 import { categories } from '../utils/data';
 import './favorites.css';
@@ -176,7 +180,7 @@ export default function FavoritesPage() {
         }
     };
 
-    const totalSum = favorites.reduce((sum, carpet) => sum + carpet.price, 0);
+    // Удалена переменная totalSum
 
     if (isLoading) {
         return (
@@ -199,20 +203,30 @@ export default function FavoritesPage() {
                 </div>
             )}
 
-            {/* Header */}
-            <div className="page-header">
-                <div className="container">
-                    <h1 className="page-title">
+            {/* Hero секция */}
+            <div className="favorites-hero">
+                <div className="favorites-hero-overlay"></div>
+                <div className="container favorites-hero-content">
+                    <div className="hero-badge">
+                        <FaHeart className="hero-badge-icon" />
+                        <span>Ваша коллекция</span>
+                    </div>
+                    <h1 className="hero-title">
                         Избранное
                         {favorites.length > 0 && (
-                            <span className="page-title-badge">{favorites.length}</span>
+                            <span className="hero-title-badge">{favorites.length}</span>
                         )}
                     </h1>
-                    <div className="breadcrumbs">
+                    <div className="hero-breadcrumbs">
                         <Link href="/">Главная</Link>
                         <span className="breadcrumbs-separator">/</span>
                         <span className="breadcrumbs-current">Избранное</span>
                     </div>
+                </div>
+                <div className="hero-wave">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="var(--bg-primary)"></path>
+                    </svg>
                 </div>
             </div>
 
@@ -220,8 +234,9 @@ export default function FavoritesPage() {
                 {favorites.length === 0 ? (
                     <div className="favorites-empty">
                         <div className="empty-animation">
-                            <div className="empty-heart"><FaHeart /></div>
+                            <div className="empty-heart"><FaRegHeart /></div>
                             <div className="empty-carpet">🧶</div>
+                            <div className="empty-sparkles">✨</div>
                         </div>
                         <h2>В избранном пока пусто</h2>
                         <p>Добавляйте понравившиеся ковры в избранное, нажимая на сердечко в каталоге</p>
@@ -236,16 +251,16 @@ export default function FavoritesPage() {
                         </div>
                         <div className="empty-features">
                             <div className="empty-feature">
-                                <span className="empty-feature-icon">✨</span>
-                                <span>Быстрый поиск</span>
+                                <FaStar className="empty-feature-icon" />
+                                <span>Эксклюзивные ковры</span>
                             </div>
                             <div className="empty-feature">
-                                <span className="empty-feature-icon">🎯</span>
-                                <span>Удобные фильтры</span>
+                                <FaTruck className="empty-feature-icon" />
+                                <span>Бесплатная доставка</span>
                             </div>
                             <div className="empty-feature">
-                                <span className="empty-feature-icon">❤️</span>
-                                <span>Мгновенное сохранение</span>
+                                <FaShieldAlt className="empty-feature-icon" />
+                                <span>Гарантия качества</span>
                             </div>
                         </div>
                     </div>
@@ -309,7 +324,7 @@ export default function FavoritesPage() {
                             </div>
                         </div>
 
-                        {/* Сводка по избранному */}
+                        {/* Сводка по избранному - убран блок с общей суммой */}
                         <div className="favorites-summary">
                             <div className="summary-card">
                                 <div className="summary-icon">📊</div>
@@ -319,25 +334,29 @@ export default function FavoritesPage() {
                                 </div>
                             </div>
                             <div className="summary-card">
-                                <div className="summary-icon">💰</div>
-                                <div className="summary-info">
-                                    <span className="summary-label">Общая сумма</span>
-                                    <span className="summary-value">{totalSum.toLocaleString()} $</span>
-                                </div>
-                            </div>
-                            <div className="summary-card">
                                 <div className="summary-icon">📦</div>
                                 <div className="summary-info">
                                     <span className="summary-label">В наличии</span>
                                     <span className="summary-value">{favorites.filter(c => c.inStock).length}</span>
                                 </div>
                             </div>
+                            <div className="summary-card">
+                                <div className="summary-icon">❤️</div>
+                                <div className="summary-info">
+                                    <span className="summary-label">Избранное</span>
+                                    <span className="summary-value">{favorites.length} товаров</span>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Сетка избранного */}
                         <div className="favorites-grid">
-                            {sortedFavorites.map(carpet => (
-                                <div key={carpet.id} className={`favorite-card ${!carpet.inStock ? 'out-of-stock' : ''} ${selectedItems.includes(carpet.id) ? 'selected' : ''}`}>
+                            {sortedFavorites.map((carpet, index) => (
+                                <div
+                                    key={carpet.id}
+                                    className={`favorite-card ${!carpet.inStock ? 'out-of-stock' : ''} ${selectedItems.includes(carpet.id) ? 'selected' : ''}`}
+                                    style={{ animationDelay: `${index * 0.05}s` }}
+                                >
                                     <div className="favorite-image">
                                         <Link href={`/catalog/${carpet.id}`}>
                                             <Image
@@ -345,7 +364,6 @@ export default function FavoritesPage() {
                                                 alt={carpet.name}
                                                 width={400}
                                                 height={300}
-                                                layout="responsive"
                                                 className="favorite-image-img"
                                             />
                                         </Link>
@@ -358,6 +376,9 @@ export default function FavoritesPage() {
                                             )}
                                             {!carpet.inStock && (
                                                 <span className="favorite-badge out">Нет в наличии</span>
+                                            )}
+                                            {carpet.featured && (
+                                                <span className="favorite-badge featured">Эксклюзив</span>
                                             )}
                                         </div>
 
@@ -386,34 +407,23 @@ export default function FavoritesPage() {
 
                                         <div className="favorite-details">
                                             <div className="favorite-detail">
-                                                <span className="detail-label">Размер:</span>
+                                                <span className="detail-label">Размер</span>
                                                 <span className="detail-value">{carpet.size}</span>
                                             </div>
                                             <div className="favorite-detail">
-                                                <span className="detail-label">Плотность:</span>
+                                                <span className="detail-label">Плотность</span>
                                                 <span className="detail-value">{carpet.density}</span>
                                             </div>
                                         </div>
 
-                                        <div className="favorite-price-block">
-                                            {carpet.oldPrice ? (
-                                                <div className="price-block">
-                                                    <span className="price-old">{carpet.oldPrice} $</span>
-                                                    <span className="price-current">{carpet.price} $</span>
-                                                </div>
-                                            ) : (
-                                                <div className="price-block single">
-                                                    <span className="price-current">{carpet.price} $</span>
-                                                </div>
-                                            )}
-                                        </div>
+                                        {/* Убрана цена из карточки */}
 
                                         <div className="favorite-actions">
                                             <Link
                                                 href={`/catalog/${carpet.id}`}
                                                 className="favorite-action-btn primary"
                                             >
-                                                Подробнее
+                                                <span>Подробнее</span>
                                                 <FaShoppingCart />
                                             </Link>
                                         </div>

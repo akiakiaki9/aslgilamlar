@@ -13,7 +13,11 @@ import {
     FaSortAmountDown,
     FaSortAmountUp,
     FaSortAlphaDown,
-    FaSortAlphaUp
+    FaSortAlphaUp,
+    FaStar,
+    FaShoppingBag,
+    FaArrowRight,
+    FaGem
 } from 'react-icons/fa';
 import { categories } from '../utils/data';
 import './catalog.css';
@@ -21,15 +25,11 @@ import './catalog.css';
 export default function CatalogPage() {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('default');
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 15000 });
-    const [inStockOnly, setInStockOnly] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [favorites, setFavorites] = useState([]);
     const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
     const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
-
-    // Данные из QuickContacts
-    const phoneNumber = "+998 (91) 718-33-33";
+    const [hoveredCard, setHoveredCard] = useState(null);
 
     // Загрузка избранного из localStorage при монтировании
     useEffect(() => {
@@ -84,14 +84,6 @@ export default function CatalogPage() {
             filtered = filtered.filter(c => c.categoryId === parseInt(selectedCategory));
         }
 
-        if (inStockOnly) {
-            filtered = filtered.filter(c => c.inStock);
-        }
-
-        filtered = filtered.filter(c =>
-            c.price >= priceRange.min && c.price <= priceRange.max
-        );
-
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             filtered = filtered.filter(c =>
@@ -138,9 +130,33 @@ export default function CatalogPage() {
             {/* Hero секция каталога */}
             <section className="catalog-hero">
                 <div className="catalog-hero-overlay"></div>
+                <div className="hero-particles">
+                    {[...Array(20)].map((_, i) => (
+                        <div key={i} className="hero-particle" style={{ '--i': i, '--delay': `${i * 0.5}s` }}></div>
+                    ))}
+                </div>
                 <div className="container catalog-hero-content">
-                    <h1>Каталог ковров</h1>
-                    <p>Изысканные ковры ручной работы из Бухары</p>
+                    <div className="hero-badge">
+                        <FaGem className="hero-badge-icon" />
+                        <span>Коллекция 2026</span>
+                    </div>
+                    <h1 className="hero-title">Каталог ковров</h1>
+                    <p className="hero-subtitle">Изысканные ковры заводской работы из Бухары</p>
+                    <div className="hero-stats">
+                        <div className="hero-stat">
+                            <span className="stat-number">{allCarpets.length}+</span>
+                            <span className="stat-label">Эксклюзивных ковров</span>
+                        </div>
+                        <div className="hero-stat">
+                            <span className="stat-number">100%</span>
+                            <span className="stat-label">Гарантия качества</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="hero-wave">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="var(--color-white)"></path>
+                    </svg>
                 </div>
             </section>
 
@@ -243,50 +259,11 @@ export default function CatalogPage() {
                         </label>
                     </div>
 
-                    {/* Ценовой диапазон */}
-                    <div className="filter-section">
-                        <h4>Цена ($)</h4>
-                        <div className="price-range">
-                            <div className="price-inputs">
-                                <input
-                                    type="number"
-                                    value={priceRange.min}
-                                    onChange={(e) => setPriceRange({ ...priceRange, min: Number(e.target.value) })}
-                                    placeholder="От"
-                                    min="0"
-                                />
-                                <span>-</span>
-                                <input
-                                    type="number"
-                                    value={priceRange.max}
-                                    onChange={(e) => setPriceRange({ ...priceRange, max: Number(e.target.value) })}
-                                    placeholder="До"
-                                    min="0"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Наличие */}
-                    <div className="filter-section">
-                        <h4>Наличие</h4>
-                        <label className="filter-checkbox">
-                            <input
-                                type="checkbox"
-                                checked={inStockOnly}
-                                onChange={(e) => setInStockOnly(e.target.checked)}
-                            />
-                            <span>Товары в наличии</span>
-                        </label>
-                    </div>
-
                     <button
                         className="filter-reset"
                         onClick={() => {
                             setSelectedCategory('all');
                             setSortBy('default');
-                            setPriceRange({ min: 0, max: 15000 });
-                            setInStockOnly(false);
                             setSearchQuery('');
                             setShowFavoritesOnly(false);
                         }}
@@ -305,6 +282,7 @@ export default function CatalogPage() {
                     {/* Верхняя панель */}
                     <div className="catalog-toolbar">
                         <div className="results-count">
+                            <FaShoppingBag className="results-icon" />
                             Найдено: <span>{filteredCarpets.length}</span> ковров
                         </div>
 
@@ -329,8 +307,14 @@ export default function CatalogPage() {
                     {/* Сетка ковров */}
                     {filteredCarpets.length > 0 ? (
                         <div className="catalog-grid">
-                            {filteredCarpets.map(carpet => (
-                                <div key={carpet.id} className="catalog-card-wrapper">
+                            {filteredCarpets.map((carpet, index) => (
+                                <div 
+                                    key={carpet.id} 
+                                    className="catalog-card-wrapper"
+                                    style={{ animationDelay: `${index * 0.05}s` }}
+                                    onMouseEnter={() => setHoveredCard(carpet.id)}
+                                    onMouseLeave={() => setHoveredCard(null)}
+                                >
                                     <Link
                                         href={`/catalog/${carpet.id}`}
                                         className="catalog-card"
@@ -341,17 +325,22 @@ export default function CatalogPage() {
                                                 alt={carpet.name}
                                                 width={400}
                                                 height={300}
-                                                layout="responsive"
                                                 className="card-img"
                                             />
-                                            {carpet.oldPrice && (
+                                            {/* {carpet.oldPrice && (
                                                 <span className="card-discount">
                                                     -{Math.round((1 - carpet.price / carpet.oldPrice) * 100)}%
                                                 </span>
-                                            )}
+                                            )} */}
                                             {!carpet.inStock && (
                                                 <span className="card-stock out">Нет в наличии</span>
                                             )}
+                                            <div className="card-overlay">
+                                                <button className="card-view-btn">
+                                                    <span>Подробнее</span>
+                                                    <FaArrowRight />
+                                                </button>
+                                            </div>
                                             <button
                                                 className={`favorite-btn ${favorites.includes(carpet.id) ? 'active' : ''}`}
                                                 onClick={(e) => toggleFavorite(e, carpet.id)}
@@ -359,25 +348,32 @@ export default function CatalogPage() {
                                             >
                                                 {favorites.includes(carpet.id) ? <FaHeart /> : <FaRegHeart />}
                                             </button>
+                                            {hoveredCard === carpet.id && (
+                                                <div className="card-shine"></div>
+                                            )}
                                         </div>
 
                                         <div className="card-content">
-                                            <span className="card-category">{carpet.categoryName}</span>
+                                            <div className="card-category-wrapper">
+                                                <span className="card-category">{carpet.categoryName}</span>
+                                                {carpet.featured && <FaStar className="featured-star" />}
+                                            </div>
                                             <h3>{carpet.name}</h3>
                                             <p className="card-description">{carpet.description.substring(0, 60)}...</p>
 
                                             <div className="card-details">
-                                                <span className="card-size">
+                                                <div className="card-detail-item">
                                                     <FaRuler className="detail-icon" />
-                                                    {carpet.size}
-                                                </span>
-                                                <span className="card-density">
+                                                    <span>{carpet.size}</span>
+                                                </div>
+                                                <div className="card-detail-divider"></div>
+                                                <div className="card-detail-item">
                                                     <FaHands className="detail-icon" />
-                                                    {carpet.density}
-                                                </span>
+                                                    <span>{carpet.density}</span>
+                                                </div>
                                             </div>
 
-                                            <div className="card-price">
+                                            {/* <div className="card-price">
                                                 {carpet.oldPrice ? (
                                                     <>
                                                         <span className="price-old">{carpet.oldPrice} $</span>
@@ -386,7 +382,7 @@ export default function CatalogPage() {
                                                 ) : (
                                                     <span className="price-current">{carpet.price} $</span>
                                                 )}
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </Link>
                                 </div>
@@ -415,8 +411,6 @@ export default function CatalogPage() {
                                         className="btn btn-outline-gold"
                                         onClick={() => {
                                             setSelectedCategory('all');
-                                            setPriceRange({ min: 0, max: 15000 });
-                                            setInStockOnly(false);
                                             setSearchQuery('');
                                         }}
                                     >
