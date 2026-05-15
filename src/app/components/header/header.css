@@ -825,3 +825,101 @@
         animation: none;
     }
 }
+
+/* ========== БЛОК БЕСПЛАТНОЙ ДОСТАВКИ ========== */
+.hero-delivery-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 1.4s;
+}
+
+.delivery-highlight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(198, 164, 92, 0.15), rgba(198, 164, 92, 0.05));
+    backdrop-filter: blur(10px);
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 1px solid rgba(198, 164, 92, 0.4);
+    transition: all 0.3s ease;
+}
+
+.delivery-highlight:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(198, 164, 92, 0.25), rgba(198, 164, 92, 0.1));
+    border-color: var(--color-gold);
+    box-shadow: 0 4px 15px rgba(198, 164, 92, 0.2);
+}
+
+.delivery-icon {
+    font-size: 1.6rem;
+    color: var(--color-gold);
+}
+
+.delivery-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.delivery-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    letter-spacing: 1px;
+}
+
+.delivery-condition {
+    font-size: 0.85rem;
+    color: var(--color-white);
+    opacity: 0.9;
+}
+
+/* Адаптивность для блока доставки */
+@media (max-width: 768px) {
+    .hero-delivery-info {
+        margin-bottom: 25px;
+    }
+
+    .delivery-highlight {
+        padding: 10px 20px;
+        gap: 10px;
+    }
+
+    .delivery-icon {
+        font-size: 1.3rem;
+    }
+
+    .delivery-title {
+        font-size: 0.9rem;
+    }
+
+    .delivery-condition {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-delivery-info {
+        margin-bottom: 20px;
+    }
+
+    .delivery-highlight {
+        padding: 8px 16px;
+    }
+
+    .delivery-icon {
+        font-size: 1.1rem;
+    }
+
+    .delivery-title {
+        font-size: 0.8rem;
+    }
+
+    .delivery-condition {
+        font-size: 0.7rem;
+    }
+}

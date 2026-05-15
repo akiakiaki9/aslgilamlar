@@ -1,14 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaArrowRight, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaArrowRight, FaPhone, FaMapMarkerAlt, FaTruck } from 'react-icons/fa';
 import './header.css';
 
 const HeroHeader = () => {
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    // Данные из QuickContacts - ИСПРАВЛЕНЫ КООРДИНАТЫ
+    // Данные из QuickContacts
     const phoneNumber = "+998 (99) 620-33-33";
     const latitude = 39.783096;
     const longitude = 64.416101;
@@ -78,7 +78,7 @@ const HeroHeader = () => {
                     </h1>
 
                     <p className="hero-subtitle">
-                        Ручная работа, вековые традиции, непревзойденное качество.
+                        Фабричные ковры высокого качества, вековые традиции, непревзойденный дизайн.
                         Подарите своему дому роскошь Востока с Asl Gilam.
                     </p>
 
@@ -91,6 +91,17 @@ const HeroHeader = () => {
                         <Link href="/contacts" className="hero-btn hero-btn-secondary">
                             Связаться с нами
                         </Link>
+                    </div>
+
+                    {/* НОВЫЙ БЛОК: Бесплатная доставка */}
+                    <div className="hero-delivery-info">
+                        <div className="delivery-highlight">
+                            <FaTruck className="delivery-icon" />
+                            <div className="delivery-text">
+                                <span className="delivery-title">Бесплатная доставка</span>
+                                <span className="delivery-condition">при заказе от 999 000 сумов</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="hero-quick-contacts">

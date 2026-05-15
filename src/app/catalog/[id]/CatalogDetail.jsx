@@ -493,23 +493,12 @@ export default function CarpetDetailPage() {
                                 <div className="delivery-grid">
                                     <div className="delivery-card">
                                         <div className="delivery-icon">🚚</div>
-                                        <h4>Доставка по Узбекистану</h4>
-                                        <p>Бесплатно от 500 000 сум. Срок доставки: 1-2 дня</p>
-                                    </div>
-                                    <div className="delivery-card">
-                                        <div className="delivery-icon">✈️</div>
-                                        <h4>Международная доставка</h4>
-                                        <p>Стоимость рассчитывается индивидуально. Срок доставки: 3-7 дней</p>
-                                    </div>
-                                    <div className="delivery-card">
-                                        <div className="delivery-icon">💳</div>
-                                        <h4>Способы оплаты</h4>
-                                        <p>Наличные, банковский перевод, Visa/Mastercard, PayPal</p>
-                                    </div>
-                                    <div className="delivery-card">
-                                        <div className="delivery-icon">🛡️</div>
-                                        <h4>Гарантия</h4>
-                                        <p>14 дней на возврат. Гарантия подлинности 100%</p>
+                                        <h4>Бесплатная доставка по Узбекистану</h4>
+                                        <p>
+                                            При заказе от <strong>999 000 сумов</strong> — доставка бесплатно.
+                                            <br />
+                                            Срок доставки: <strong>1–2 дня</strong>.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
