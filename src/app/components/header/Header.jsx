@@ -114,26 +114,6 @@ const HeroHeader = () => {
                             <span>Вызвать такси</span>
                         </button>
                     </div>
-
-                    <div className="hero-stats">
-                        <div className="hero-stat-item">
-                            <span className="hero-stat-number">50+</span>
-                            <span className="hero-stat-label">лет опыта</span>
-                        </div>
-                        <div className="hero-stat-item">
-                            <span className="hero-stat-number">1000+</span>
-                            <span className="hero-stat-label">ковров</span>
-                        </div>
-                        <div className="hero-stat-item">
-                            <span className="hero-stat-number">500+</span>
-                            <span className="hero-stat-label">клиентов</span>
-                        </div>
-                    </div>
-
-                    <div className="hero-scroll-indicator">
-                        <span className="hero-scroll-text">Листайте вниз</span>
-                        <div className="hero-scroll-line"></div>
-                    </div>
                 </div>
             </div>
 
