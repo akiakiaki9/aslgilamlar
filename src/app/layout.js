@@ -16,6 +16,14 @@ export const metadata = {
   description: "ASL GILAM - широкий выбор фабричных ковров в Бухаре. ✓ Прямые поставки с заводов ✓ Доступные цены ✓ Ковры различных размеров и дизайнов ✓ Доставка по Узбекистану",
   keywords: "ковры Бухара, фабричные ковры, ASL GILAM, asl gilam, магазин ковров Бухара, ковры от производителей, турецкие ковры, персидские ковры, ковры в Бухаре, ковровые покрытия",
   authors: [{ name: "ASL GILAM", url: "https://aslgilamlarbukhara.uz" }],
+  // ✅ Добавляем верификацию Яндекса
+  verification: {
+    yandex: "079ce801bb988c47",
+    google: "ваш_код_верификации", // если есть
+    other: {
+      "yandex-verification": ["079ce801bb988c47"],
+    },
+  },
   openGraph: {
     title: "ASL GILAM - Фабричные ковры в Бухаре",
     description: "Большой выбор фабричных ковров в Бухаре. Прямые поставки с заводов, доступные цены, разнообразие дизайнов и размеров.",
@@ -46,7 +54,6 @@ export const metadata = {
   category: "home goods",
 };
 
-// ✅ ВЫНЕСЕНО В ОТДЕЛЬНЫЙ ЭКСПОРТ viewport
 export const viewport = {
   width: "device-width",
   initialScale: 1,
@@ -57,23 +64,6 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <head>
-        <meta charSet="utf-8" />
-        <link rel="icon" href="/images/logo.png" type="image/png" />
-        <meta name="geo.region" content="UZ-BU" />
-        <meta name="geo.placename" content="Bukhara, Uzbekistan" />
-        <meta name="geo.position" content="39.76808;64.45594" />
-        <meta name="ICBM" content="39.76808, 64.45594" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
-        {/* Yandex Webmaster */}
-        <meta name="yandex-verification" content="079ce801bb988c47" />
-
-        {/* Google Search Console */}
-        <meta name="google-site-verification" content="ваш_код_верификации" />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>
