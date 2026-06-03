@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
         {/* Yandex Webmaster */}
-        <meta name="yandex-verification" content="ваш_код_верификации" />
+        <meta name="yandex-verification" content="079ce801bb988c47" />
 
         {/* Google Search Console */}
         <meta name="google-site-verification" content="ваш_код_верификации" />
